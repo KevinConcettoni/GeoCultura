@@ -1,4 +1,4 @@
-package it.unicam.cs.GeoCultura;
+package it.unicam.cs.GeoCultura.Repositories;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +14,6 @@ public class GenericRepository<T> implements IRepository<T>{
             throw new IllegalArgumentException("Errore: impossibile accedere al metodo getID dell'oggetto", e);
         }
     }
-
     @Override
     public void add(T item) {
         vector.add(item);

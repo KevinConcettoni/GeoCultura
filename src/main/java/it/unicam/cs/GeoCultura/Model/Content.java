@@ -1,4 +1,4 @@
-package it.unicam.cs.GeoCultura;
+package it.unicam.cs.GeoCultura.Model;
 
 import java.util.Date;
 

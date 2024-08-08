@@ -1,4 +1,4 @@
-package it.unicam.cs.GeoCultura;
+package it.unicam.cs.GeoCultura.Repositories;
 
 import java.util.List;
 

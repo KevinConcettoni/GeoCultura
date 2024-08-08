@@ -1,6 +1,6 @@
-package it.unicam.cs.GeoCultura;
+package it.unicam.cs.GeoCultura.Model;
 
-public class Coordinate {
+public class Posizione {
     private float latitudine;
     private float longitudine;
 }

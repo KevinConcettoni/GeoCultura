@@ -1,6 +1,10 @@
 package it.unicam.cs.GeoCultura.Repositories;
 
 import it.unicam.cs.GeoCultura.Model.Itinerario;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public class ItinerarioRepository extends GenericRepository<Itinerario>{
+@Repository
+public interface ItinerarioRepository extends CrudRepository<Itinerario,Integer> {
+
 }

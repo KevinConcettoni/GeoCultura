@@ -1,6 +1,10 @@
 package it.unicam.cs.GeoCultura.Repositories;
 
 import it.unicam.cs.GeoCultura.Model.PuntoDiInteresse;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.CrudRepositoryExtensionsKt;
+import org.springframework.stereotype.Repository;
 
-public class PuntoDiInteresseRepository extends GenericRepository<PuntoDiInteresse>{
+@Repository
+public interface PuntoDiInteresseRepository extends CrudRepository<PuntoDiInteresse,Integer> {
 }

@@ -2,12 +2,7 @@ package it.unicam.cs.GeoCultura.Model;
 
 import java.util.Date;
 
-public class Evento extends Content{
-    private int ID;
-    private String nome;
-    private String descrizione;
-    private Date dataCreazione;
-    private Utente creatore;
+public class Evento extends Contenunto {
     private Date dataInizio;
     private Date datafine;
     private Posizione posizione;
@@ -20,5 +15,9 @@ public class Evento extends Content{
         this.datafine = datafine;
         this.posizione = posizione;
         this.comune = comune;
+    }
+
+    public TipoContenuto getTipoContenuto(){
+        return TipoContenuto.EVENTO;
     }
 }

@@ -2,7 +2,7 @@ package it.unicam.cs.GeoCultura.Model;
 
 import java.util.Date;
 
-public abstract class Content {
+public abstract class Contenunto {
     private int ID;
     String nome;
     String descrizione;
@@ -10,7 +10,7 @@ public abstract class Content {
     Utente creatore;
     StatoApprovazione statoApprovazione;
 
-    public Content(String nome, String descrizione, Date dataCreazione, int IdCreatore){
+    public Contenunto(String nome, String descrizione, Date dataCreazione, int IdCreatore){
         this.nome = nome;
         this.descrizione = descrizione;
         this.dataCreazione = dataCreazione;

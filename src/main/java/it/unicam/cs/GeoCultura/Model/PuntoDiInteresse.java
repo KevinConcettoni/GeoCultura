@@ -2,7 +2,7 @@ package it.unicam.cs.GeoCultura.Model;
 
 import java.util.Date;
 
-public class PuntoDiInteresse extends Content{
+public class PuntoDiInteresse extends Contenunto {
     private CategoriaPOI categoria;
     private Posizione posizione;
 

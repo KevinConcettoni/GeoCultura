@@ -8,6 +8,10 @@ import it.unicam.cs.GeoCultura.Repositories.ItinerarioRepository;
 import it.unicam.cs.GeoCultura.Repositories.PuntoDiInteresseRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 @Service
 public class ContenutoService implements IContenutoService{
     private final ItinerarioRepository itinerarioRepository;
@@ -32,5 +36,23 @@ public class ContenutoService implements IContenutoService{
     @Override
     public Evento creaNuovoEvento(Evento evento) {
         return eventoRepository.save(evento);
+    }
+
+    @Override
+    public List<Evento> getAllEventi() {
+        return StreamSupport.stream(eventoRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Itinerario> getAllItinerari() {
+        return StreamSupport.stream(itinerarioRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<PuntoDiInteresse> getAllPoi() {
+        return StreamSupport.stream(puntoDiInteresseRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
     }
 }

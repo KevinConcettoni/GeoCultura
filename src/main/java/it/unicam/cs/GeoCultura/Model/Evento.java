@@ -1,10 +1,15 @@
 package it.unicam.cs.GeoCultura.Model;
 
-import java.util.Date;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
+import java.util.Date;
+@Entity
 public class Evento extends Contenunto {
     private Date dataInizio;
     private Date datafine;
+    @Embedded
     private Posizione posizione;
     private Comune comune;
 

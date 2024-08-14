@@ -1,9 +1,14 @@
 package it.unicam.cs.GeoCultura.Model;
 
-import java.util.Date;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
+import java.util.Date;
+@Entity
 public class PuntoDiInteresse extends Contenunto {
     private CategoriaPOI categoria;
+    @Embedded
     private Posizione posizione;
 
     public PuntoDiInteresse(String nome, String descrizione, Date dataCreazione, int IdCreatore, CategoriaPOI categoria,

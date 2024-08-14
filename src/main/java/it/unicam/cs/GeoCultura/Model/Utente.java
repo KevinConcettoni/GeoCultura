@@ -1,9 +1,14 @@
 package it.unicam.cs.GeoCultura.Model;
 
-import java.util.Date;
+import jakarta.persistence.*;
 
+import java.util.Date;
+@Entity
+@Table(name = "Utente")
 public class Utente {
-    private int ID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer ID;
     private String username;
     private String nomeCompleto;
     private String email;

@@ -1,19 +1,28 @@
 package it.unicam.cs.GeoCultura.Model;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 import java.util.List;
-
+@Entity
+@Table(name = "Contest")
 public class Contest{
-    int ID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer ID;
     private String nome;
     private String descrizione;
     private Date dataInizio;
     private Date dataFine;
     private String tipo;
     private String regole;
+    @ManyToMany
     private List<Contenunto> contenuti;
+    @ManyToOne
     private Contenunto contenutoVincitore;
+    @ManyToOne
     private Comune comune;
+    @ManyToOne
     private Utente creatore;
 
     public Contest(String nome, String descrizione, Date dataInizio, Date dataFine,

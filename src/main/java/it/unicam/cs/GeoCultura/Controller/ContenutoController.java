@@ -17,12 +17,12 @@ public class ContenutoController {
     public ContenutoController(ContenutoService contenutoService) {
         this.contenutoService = contenutoService;
     }
-    @PostMapping("/add/itinerario")
+    @PostMapping("/aggiungi/itinerario")
     public ResponseEntity<Itinerario> creaItinerario(@RequestBody Itinerario itinerario) {
         Itinerario nuovoItinerario = contenutoService.creaNuovoItinerario(itinerario);
         return ResponseEntity.ok(nuovoItinerario);
     }
-    @PostMapping("/add/evento")
+    @PostMapping("/aggiungi/evento")
     public ResponseEntity<Evento> creaEvento(@RequestBody Evento evento) {
         Evento nuovoEvento = contenutoService.creaNuovoEvento(evento);
         return ResponseEntity.ok(nuovoEvento);
@@ -43,5 +43,17 @@ public class ContenutoController {
     @GetMapping("/getAll/itinerari")
     public ResponseEntity<List<Itinerario>> getAllItinerari(){
         return ResponseEntity.ok(contenutoService.getAllItinerari());
+    }
+    @GetMapping("/get/itinerary/{id}")
+    public ResponseEntity<Itinerario> getItinerary(@PathVariable int id) {
+        return ResponseEntity.ok(contenutoService.getItinerario(id));
+    }
+    @GetMapping("/get/event/{id}")
+    public ResponseEntity<Evento> getEvent(@PathVariable int id) {
+        return ResponseEntity.ok(contenutoService.getEvento(id));
+    }
+    @GetMapping("/get/poi/{id}")
+    public ResponseEntity<PuntoDiInteresse> getPoi(@PathVariable int id) {
+        return ResponseEntity.ok(contenutoService.getPoi(id));
     }
 }

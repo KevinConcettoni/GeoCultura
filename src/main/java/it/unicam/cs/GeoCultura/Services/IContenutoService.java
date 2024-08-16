@@ -19,4 +19,7 @@ public interface IContenutoService {
     Evento getEvento(int id);
     Itinerario getItinerario(int id);
     PuntoDiInteresse getPoi(int id);
+    void updateEvent(Evento event);
+    void updatePoi(PuntoDiInteresse pointOfInterest);
+    void updateEvent(Itinerario itinerary);
 }

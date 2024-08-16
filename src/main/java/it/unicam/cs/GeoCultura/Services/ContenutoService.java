@@ -23,6 +23,8 @@ public class ContenutoService implements IContenutoService{
         this.puntoDiInteresseRepository = puntoDiInteresseRepository;
         this.eventoRepository = eventoRepository;
     }
+
+    // TODO: fixare l'implementazione dei metodi
     @Override
     public PuntoDiInteresse creaNuovoPuntoDiInteresse(PuntoDiInteresse puntoDiInteresse) {
         return puntoDiInteresseRepository.save(puntoDiInteresse);
@@ -66,6 +68,21 @@ public class ContenutoService implements IContenutoService{
     @Override
     public PuntoDiInteresse getPoi(int id) {
         return puntoDiInteresseRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void updateEvent(Evento event) {
+        eventoRepository.save(event);
+    }
+
+    @Override
+    public void updatePoi(PuntoDiInteresse puntoDiInteresse) {
+        puntoDiInteresseRepository.save(puntoDiInteresse);
+    }
+
+    @Override
+    public void updateEvent(Itinerario itinerario) {
+        itinerarioRepository.save(itinerario);
     }
 
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/utenti")
-public class UtenteController {
+public class UtenteController implements IController<Utente, Integer> {
     private final UtenteService utenteService;
 
     public UtenteController(UtenteService utenteService) {
@@ -15,19 +15,29 @@ public class UtenteController {
     }
 
     @PostMapping("/aggiungi")
-    public ResponseEntity<?> creaUtente(@RequestBody Utente utente)
+    public ResponseEntity<?> crea(@RequestBody Utente utente)
     {
         Utente nuovoUtente= utenteService.creaUtente(utente);
         return ResponseEntity.ok(nuovoUtente);
     }
     @GetMapping("/getAll")
-    public ResponseEntity<?> getAllUtenti()
+    public ResponseEntity<?> getAll()
     {
         return ResponseEntity.ok(utenteService.listaUtenti());
     }
 
-    @GetMapping("/getUtente")
-    public ResponseEntity<?> getUtente(@PathVariable("ID") Integer ID)
+    @Override
+    public ResponseEntity<?> modifica(Utente entity) {
+        return null;//TODO Da Implementare
+    }
+
+    @Override
+    public ResponseEntity<?> elimina(Integer integer) {
+        return null;//TODO Da Implementare
+    }
+
+    @GetMapping("/getById")
+    public ResponseEntity<?> getById(@PathVariable("ID") Integer ID)
     {
         return ResponseEntity.ok(utenteService.getUtente(ID));
     }

@@ -21,5 +21,5 @@ public interface IContenutoService {
     PuntoDiInteresse getPoi(int id);
     void updateEvent(Evento event);
     void updatePoi(PuntoDiInteresse pointOfInterest);
-    void updateEvent(Itinerario itinerary);
+    void updateItinerario(Itinerario itinerary);
 }

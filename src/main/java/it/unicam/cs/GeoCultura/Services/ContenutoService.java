@@ -81,8 +81,8 @@ public class ContenutoService implements IContenutoService{
     }
 
     @Override
-    public void updateEvent(Itinerario itinerario) {
+    public void updateItinerario(Itinerario itinerario) {
         itinerarioRepository.save(itinerario);
-    }
+    }//TODO cambia nomi
 
 }

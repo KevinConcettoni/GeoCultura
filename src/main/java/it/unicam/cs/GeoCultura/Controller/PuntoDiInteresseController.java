@@ -1,6 +1,5 @@
 package it.unicam.cs.GeoCultura.Controller;
 
-import it.unicam.cs.GeoCultura.Model.Evento;
 import it.unicam.cs.GeoCultura.Model.PuntoDiInteresse;
 import it.unicam.cs.GeoCultura.Services.ContenutoService;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,6 @@ public class PuntoDiInteresseController implements IController<PuntoDiInteresse,
         PuntoDiInteresse nuovoPuntoDiInteresse = contenutoService.creaNuovoPuntoDiInteresse(entity);
         return ResponseEntity.ok(nuovoPuntoDiInteresse);
     }
-
     @Override
     public ResponseEntity<PuntoDiInteresse> getById(Integer id) {
         return ResponseEntity.ok(contenutoService.getPoi(Math.toIntExact(id)));
@@ -32,7 +30,7 @@ public class PuntoDiInteresseController implements IController<PuntoDiInteresse,
 
     @Override
     public ResponseEntity<?> modifica(PuntoDiInteresse entity) {
-        contenutoService.updatePoi(entity);
+        contenutoService.modificaPoi(entity);
         return ResponseEntity.ok("{}");
     }
 

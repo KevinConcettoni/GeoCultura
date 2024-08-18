@@ -15,12 +15,11 @@ public class ComuneController implements  IController<Comune, Integer>{
         this.comuneService = comuneService;
     }
 
-    @PostMapping("/aggiungi")
+    @Override
     public ResponseEntity<?> crea(@RequestBody Comune comune) {
         Comune nuovoComune= comuneService.creaComune(comune);
         return ResponseEntity.ok(nuovoComune);
     }
-
     @Override
     public ResponseEntity<?> getById(Integer integer) {
         return null;//TODO Da Implementare

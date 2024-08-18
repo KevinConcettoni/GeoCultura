@@ -14,16 +14,16 @@ public class UtenteController implements IController<Utente, Integer> {
         this.utenteService = utenteService;
     }
 
-    @PostMapping("/aggiungi")
+    @Override
     public ResponseEntity<?> crea(@RequestBody Utente utente)
     {
         Utente nuovoUtente= utenteService.creaUtente(utente);
         return ResponseEntity.ok(nuovoUtente);
     }
-    @GetMapping("/getAll")
+    @Override
     public ResponseEntity<?> getAll()
     {
-        return ResponseEntity.ok(utenteService.listaUtenti());
+        return ResponseEntity.ok(utenteService.getAll());
     }
 
     @Override
@@ -36,7 +36,7 @@ public class UtenteController implements IController<Utente, Integer> {
         return null;//TODO Da Implementare
     }
 
-    @GetMapping("/getById")
+    @Override
     public ResponseEntity<?> getById(@PathVariable("ID") Integer ID)
     {
         return ResponseEntity.ok(utenteService.getUtente(ID));

@@ -34,7 +34,7 @@ public class ItinerarioController implements IController<Itinerario, Integer> {
 
     @Override
     public ResponseEntity<?> modifica(Itinerario entity) {
-        contenutoService.updateItinerario(entity);
+        contenutoService.modificaItinerario(entity);
         return ResponseEntity.ok("{}");
     }
 

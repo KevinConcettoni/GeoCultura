@@ -22,11 +22,10 @@ public class UtenteService implements IUtenteService{
     }
 
     @Override
-    public List<Utente> listaUtenti() {
+    public List<Utente> getAll() {
         return StreamSupport.stream(utenteRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
     }
-
     @Override
     public Utente getUtente(int id) {
         return utenteRepository.findById(id).orElse(null);

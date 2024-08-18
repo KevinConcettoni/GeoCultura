@@ -4,11 +4,11 @@ import it.unicam.cs.GeoCultura.Model.Evento;
 import it.unicam.cs.GeoCultura.Model.Itinerario;
 import it.unicam.cs.GeoCultura.Model.PuntoDiInteresse;
 
-import java.awt.*;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
+/**
+ * Interfaccia che si occupa di gestire le operazioni CRUD dei contenuti (eventi, poi, itinerari)
+ */
 public interface IContenutoService {
     PuntoDiInteresse creaNuovoPuntoDiInteresse(PuntoDiInteresse puntoDiInteresse);
     Itinerario creaNuovoItinerario (Itinerario itinerario);
@@ -19,7 +19,7 @@ public interface IContenutoService {
     Evento getEvento(int id);
     Itinerario getItinerario(int id);
     PuntoDiInteresse getPoi(int id);
-    void updateEvent(Evento event);
-    void updatePoi(PuntoDiInteresse pointOfInterest);
-    void updateItinerario(Itinerario itinerary);
+    void modificaEvento(Evento event);
+    void modificaPoi(PuntoDiInteresse pointOfInterest);
+    void modificaItinerario(Itinerario itinerary);
 }

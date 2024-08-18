@@ -10,11 +10,11 @@ public abstract class Contenunto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
-    String nome = null;
-    String descrizione = null;
-    Date dataCreazione = null;
+    String nome;
+    String descrizione;
+    Date dataCreazione;
     @ManyToOne
-    Utente creatore = null;
+    Utente creatore;
     StatoApprovazione statoApprovazione = null;
     @ManyToOne
     Comune comune;

@@ -71,17 +71,17 @@ public class ContenutoService implements IContenutoService{
     }
 
     @Override
-    public void updateEvent(Evento event) {
+    public void modificaEvento(Evento event) {
         eventoRepository.save(event);
     }
 
     @Override
-    public void updatePoi(PuntoDiInteresse puntoDiInteresse) {
+    public void modificaPoi(PuntoDiInteresse puntoDiInteresse) {
         puntoDiInteresseRepository.save(puntoDiInteresse);
     }
 
     @Override
-    public void updateItinerario(Itinerario itinerario) {
+    public void modificaItinerario(Itinerario itinerario) {
         itinerarioRepository.save(itinerario);
     }//TODO cambia nomi
 

@@ -18,7 +18,7 @@ public class ContestController implements IController<Contest, Integer> {
         this.contestService = contestService;
     }
 
-    @PostMapping("/aggiungi")
+    @Override
     public ResponseEntity<Contest> crea (@RequestBody Contest contest)
     {
         Contest newContest = contestService.creaContest(contest);

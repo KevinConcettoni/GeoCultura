@@ -34,7 +34,7 @@ public class EventoController implements IController<Evento, Integer> {
 
     @Override
     public ResponseEntity<?> modifica(Evento  entity) {
-        contenutoService.updateEvent(entity);
+        contenutoService.modificaEvento(entity);
         return ResponseEntity.ok("{}");
     }
 

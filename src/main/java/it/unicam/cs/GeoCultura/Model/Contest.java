@@ -17,9 +17,9 @@ public class Contest{
     private String tipo;
     private String regole;
     @ManyToMany
-    private List<Contenunto> contenuti;
+    private List<Contenuto> contenuti;
     @ManyToOne
-    private Contenunto contenutoVincitore;
+    private Contenuto contenutoVincitore;
     @ManyToOne
     private Comune comune;
     @ManyToOne

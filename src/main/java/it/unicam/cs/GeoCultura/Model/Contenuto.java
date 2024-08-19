@@ -6,7 +6,7 @@ import java.util.Date;
 @Entity
 @Table(name = "Contenuto")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Contenunto {
+public abstract class Contenuto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
@@ -19,7 +19,7 @@ public abstract class Contenunto {
     @ManyToOne
     Comune comune;
 
-    public Contenunto(String nome, String descrizione, Date dataCreazione, int IdCreatore){
+    public Contenuto(String nome, String descrizione, Date dataCreazione, int IdCreatore){
         this.nome = nome;
         this.descrizione = descrizione;
         this.dataCreazione = dataCreazione;

@@ -16,6 +16,13 @@ public class RuoloUtenteComune {
     private RuoloUtente ruolo;
     @ManyToOne
     private Utente utente;
+
+    public RuoloUtenteComune(Comune comune, RuoloUtente ruolo, Utente utente) {
+        this.comune = comune;
+        this.ruolo = ruolo;
+        this.utente = utente;
+    }
+
     public Comune getComune() {
         return comune;
     }

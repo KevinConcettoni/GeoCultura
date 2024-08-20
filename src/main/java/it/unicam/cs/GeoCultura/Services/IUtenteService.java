@@ -8,9 +8,11 @@ public interface IUtenteService {
     /**
      * Crea un nuovo utente
      * @param utente l'utente da creare
+     * @param IdComune l'ID del comune dove verrà aggiunto l'utente
+     * @param ruolo il ruolo che avrà l'utente nel comune
      * @return il nuovo utente aggiunto al repository
      */
-    Utente creaUtente(Utente utente);
+    Utente creaUtente(Utente utente, Integer IdComune, int ruolo);
 
     /**
      * Restituisce tutti gli utenti presenti nel repository

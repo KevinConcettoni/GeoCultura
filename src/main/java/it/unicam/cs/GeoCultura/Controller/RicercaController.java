@@ -29,7 +29,7 @@ public class RicercaController {
                                               @RequestParam String descrizione,
                                               @RequestParam Date dataCreazione,
                                               @RequestParam int livelloDifficolta){
-        return ricercaService.ricercaItinerario(nome, descrizione,dataCreazione,livelloDifficolta);
+        return ricercaService.ricercaItinerario(nome, descrizione, dataCreazione, livelloDifficolta);
     }
 
     @GetMapping("/contest")

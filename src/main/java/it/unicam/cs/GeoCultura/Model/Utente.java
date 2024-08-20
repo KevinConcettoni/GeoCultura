@@ -30,4 +30,10 @@ public class Utente {
     public int getID() {
         return ID;
     }
+    public String getUsername(){
+        return this.username;
+    }
+    public String getEmail() {
+        return email;
+    }
 }

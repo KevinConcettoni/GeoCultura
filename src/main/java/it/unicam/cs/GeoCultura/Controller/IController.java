@@ -17,7 +17,7 @@ public interface IController<T, ID> {
      * @param entity l'entità da creare
      * @return l'entità creata all'interno del repository
      */
-    @PostMapping
+    @PostMapping("/crea")
     ResponseEntity<?> crea(@RequestBody T entity);
 
     /**

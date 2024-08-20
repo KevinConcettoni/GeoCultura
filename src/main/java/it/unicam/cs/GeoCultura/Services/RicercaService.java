@@ -41,7 +41,7 @@ public class RicercaService implements IRicercaService{
     }
 
     @Override
-    public List<PuntoDiInteresse> ricercaPOI(String nome, String descrizione, CategoriaPOI categoria, Posizione luogo) {
+    public List<PuntoDiInteresse> ricercaPuntoDiInteresse(String nome, String descrizione, CategoriaPOI categoria, Posizione luogo) {
         return puntoDiInteresseRepository.ricercaPoi(nome, descrizione, categoria, luogo);
     }
 

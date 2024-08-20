@@ -1,5 +1,6 @@
 package it.unicam.cs.GeoCultura.Model;
 
+import it.unicam.cs.GeoCultura.Repositories.ComuneRepository;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -23,5 +24,8 @@ public class Comune {
         this.posizione = posizione;
         this.area = area;
         this.dataFondazione = dataFondazione;
+    }
+    public Comune(){
+
     }
 }

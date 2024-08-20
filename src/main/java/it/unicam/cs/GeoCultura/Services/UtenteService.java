@@ -25,7 +25,7 @@ public class UtenteService implements IUtenteService{
 
     @Override
     public Utente creaUtente(Utente utente, Integer IdComune, int ruolo) {
-        if (!utenteRepository.esisteUtente(utente.getUsername(), utente.getEmail()))
+        if (utenteRepository.esisteUtente(utente.getUsername(), utente.getEmail()))
             throw new IllegalArgumentException("L'utente è già presente nella piattaforma");
         if (!this.comuneRepository.existsById(IdComune))
             throw new IllegalArgumentException("Il comune non esiste");

@@ -83,6 +83,6 @@ public class ContenutoService implements IContenutoService{
     @Override
     public void modificaItinerario(Itinerario itinerario) {
         itinerarioRepository.save(itinerario);
-    }//TODO cambia nomi
+    }
 
 }

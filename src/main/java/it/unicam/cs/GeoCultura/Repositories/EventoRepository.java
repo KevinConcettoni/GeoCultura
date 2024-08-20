@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface EventoRepository extends CrudRepository<Evento,Integer> {
-    @Query("SELECT e FROM Evento e WHERE e.nome = :nome AND e.descizione = :descizione AND " +
+    @Query("SELECT e FROM Evento e WHERE e.nome = :nome AND e.descrizione = :descrizione AND " +
             "(e.dataInizio BETWEEN :dataInizio AND :dataFine OR e.dataFine BETWEEN :dataInizio AND :dataFine)")
     List<Evento> ricercaEvento(
             @Param("nome") String nome,

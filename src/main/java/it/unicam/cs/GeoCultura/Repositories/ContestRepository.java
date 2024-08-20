@@ -12,10 +12,11 @@ import java.util.List;
 
 @Repository
 public interface ContestRepository extends CrudRepository<Contest,Integer> {
-    @Query("SELECT c FROM Contest c WHERE c.nome = :nome AND c.dataInizio BETWEEN :dataInizio AND :dataFine AND c.tipo = :tipo")//TODO verevicare
+    @Query("SELECT c FROM Contest c WHERE (:nome IS NULL OR c.nome = :nome) AND (:dataInizio IS NULL OR :dataFine IS NULL OR c.dataInizio BETWEEN :dataInizio AND :dataFine) AND (:tipo IS NULL OR c.tipo = :tipo)")
     List<Contest> ricercaContest(
             @Param("nome") String nome,
             @Param("dataInizio") Date dataInizio,
             @Param("dataFine") Date dataFine,
             @Param("tipo") String tipo);
+
 }

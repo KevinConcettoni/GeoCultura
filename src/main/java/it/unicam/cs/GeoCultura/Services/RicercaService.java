@@ -3,11 +3,13 @@ package it.unicam.cs.GeoCultura.Services;
 import it.unicam.cs.GeoCultura.Model.*;
 import it.unicam.cs.GeoCultura.Repositories.*;
 import jdk.jshell.spi.ExecutionControl;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class RicercaService implements IRicercaService{
     private final ContestRepository contestRepository;
     private final ItinerarioRepository itinerarioRepository;

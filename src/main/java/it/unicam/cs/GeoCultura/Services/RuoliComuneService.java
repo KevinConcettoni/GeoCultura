@@ -2,7 +2,9 @@ package it.unicam.cs.GeoCultura.Services;
 
 import it.unicam.cs.GeoCultura.Model.RuoloUtenteComune;
 import it.unicam.cs.GeoCultura.Repositories.RuoliComuneRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RuoliComuneService implements IRuoliComuneService{
     private final RuoliComuneRepository ruoliComuneRepository;
 

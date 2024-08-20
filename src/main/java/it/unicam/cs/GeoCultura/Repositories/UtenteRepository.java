@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UtenteRepository extends CrudRepository<Utente, Integer> {
-    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM User u WHERE u.username = :username OR u.email = :email")
-    boolean esisteUtente (@Param("usermane") String username, @Param("email") String email);
+    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM Utente u WHERE u.username = :username OR u.email = :email")
+    boolean esisteUtente (@Param("username") String username, @Param("email") String email);
 }

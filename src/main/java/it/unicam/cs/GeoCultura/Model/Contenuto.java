@@ -15,7 +15,7 @@ public abstract class Contenuto {
     Date dataCreazione;
     @ManyToOne
     Utente creatore;
-    StatoApprovazione statoApprovazione = null;
+    StatoApprovazione statoApprovazione;
     @ManyToOne
     Comune comune;
 
@@ -27,8 +27,23 @@ public abstract class Contenuto {
         this.creatore.setID(IdCreatore);
     }
 
+    public Utente getCreatore() {
+        return creatore;
+    }
 
+    public Comune getComune() {
+        return comune;
+    }
 
+    public void setComune(Comune comune) {
+        this.comune = comune;
+    }
 
+    public void setStatoApprovazione(StatoApprovazione statoApprovazione) {
+        this.statoApprovazione = statoApprovazione;
+    }
 
+    public void setCreatore(Utente creatore) {
+        this.creatore = creatore;
+    }
 }

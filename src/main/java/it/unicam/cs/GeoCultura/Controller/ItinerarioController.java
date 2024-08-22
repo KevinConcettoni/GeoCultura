@@ -17,8 +17,8 @@ public class ItinerarioController implements IController<Itinerario, Integer> {
         this.contenutoService = contenutoService;
     }
     @Override
-    public ResponseEntity<Itinerario> crea(Itinerario entity) {
-        Itinerario nuovoItinerario = contenutoService.creaNuovoItinerario(entity);
+    public ResponseEntity<Itinerario> crea(Itinerario itinerario) {
+        Itinerario nuovoItinerario = contenutoService.creaNuovoItinerario(itinerario, itinerario.getContenuti());//TODO da fixare
         return ResponseEntity.ok(nuovoItinerario);
     }
 

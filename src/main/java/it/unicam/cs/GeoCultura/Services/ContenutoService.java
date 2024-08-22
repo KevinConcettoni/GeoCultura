@@ -17,14 +17,16 @@ public class ContenutoService implements IContenutoService{
     private final UtenteRepository utenteRepository;
     private final ComuneRepository comuneRepository;
     private final RuoliComuneRepository ruoliComuneRepository;
+    private final ContenutoRepository contenutoRepository;
 
-    public ContenutoService(ItinerarioRepository itinerarioRepository, PuntoDiInteresseRepository puntoDiInteresseRepository, EventoRepository eventoRepository, UtenteRepository utenteRepository, ComuneRepository comuneRepository, RuoliComuneRepository ruoliComuneRepository) {
+    public ContenutoService(ItinerarioRepository itinerarioRepository, PuntoDiInteresseRepository puntoDiInteresseRepository, EventoRepository eventoRepository, UtenteRepository utenteRepository, ComuneRepository comuneRepository, RuoliComuneRepository ruoliComuneRepository, ContenutoRepository contenutoRepository) {
         this.itinerarioRepository = itinerarioRepository;
         this.puntoDiInteresseRepository = puntoDiInteresseRepository;
         this.eventoRepository = eventoRepository;
         this.utenteRepository = utenteRepository;
         this.comuneRepository = comuneRepository;
         this.ruoliComuneRepository = ruoliComuneRepository;
+        this.contenutoRepository = contenutoRepository;
     }
 
     private StatoApprovazione approvazioneDefault(RuoloUtente ruolo) {
@@ -56,7 +58,28 @@ public class ContenutoService implements IContenutoService{
         return puntoDiInteresseRepository.save(puntoDiInteresse);
     }
     @Override
-    public Itinerario creaNuovoItinerario(Itinerario itinerario) {
+    public Itinerario creaNuovoItinerario(Itinerario itinerario,  List<Integer> contenuti) {
+        if (itinerario == null) {
+            throw new IllegalArgumentException("Errore: l'itinerario è nullo");
+        }
+
+
+        itinerario.setCreatore(utenteRepository.findById(itinerario.getCreatore().getID())
+                .orElseThrow(() -> new IllegalArgumentException("Errore: il creatore non esiste")));
+
+        itinerario.setComune(comuneRepository.findById(itinerario.getComune().getID())
+                .orElseThrow(() -> new IllegalArgumentException("Errore: il comune non esiste")));
+
+        for (Integer id : contenuti)
+        {
+            Contenuto contenuto = contenutoRepository.findById(id)
+                    .orElseThrow(() -> new IllegalArgumentException("Errore: il contenuto non esiste"));
+
+            itinerario.getContenuti().add(contenuto);
+        }
+
+        itinerario.setStatoApprovazione(approvazioneDefaultUtente(itinerario.getCreatore().getID(), itinerario.getComune().getID())
+                .orElseThrow(() -> new IllegalArgumentException("Errore: l'utente non ha il ruolo necessario")));
 
         return itinerarioRepository.save(itinerario);
     }

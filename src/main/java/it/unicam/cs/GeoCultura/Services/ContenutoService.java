@@ -43,7 +43,7 @@ public class ContenutoService implements IContenutoService{
         comuneRepository.findById(comuneID).
                 orElseThrow(() -> new IllegalArgumentException("Errore: il comune non esiste"));
 
-        List<RuoloUtenteComune> ruoli = ruoliComuneRepository.cercaRuolo(id);//TODO Implementare cercaRuolo
+        List<RuoloUtenteComune> ruoli = ruoliComuneRepository.cercaRuoliPerId(id);
         for (RuoloUtenteComune ruolo : ruoli) {
             if (ruolo.getComune().getID().equals(comuneID)) {
                 return Optional.of(approvazioneDefault(ruolo.getRuolo()));
@@ -62,7 +62,6 @@ public class ContenutoService implements IContenutoService{
         if (itinerario == null) {
             throw new IllegalArgumentException("Errore: l'itinerario è nullo");
         }
-
 
         itinerario.setCreatore(utenteRepository.findById(itinerario.getCreatore().getID())
                 .orElseThrow(() -> new IllegalArgumentException("Errore: il creatore non esiste")));

@@ -1,5 +1,6 @@
 package it.unicam.cs.GeoCultura.Controller;
 
+import it.unicam.cs.GeoCultura.Model.DTO.ItinerarioDTO;
 import it.unicam.cs.GeoCultura.Model.Itinerario;
 import it.unicam.cs.GeoCultura.Services.ContenutoService;
 import org.springframework.http.ResponseEntity;
@@ -10,15 +11,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/itinerario")
-public class ItinerarioController implements IController<Itinerario, Integer> {
+public class ItinerarioController implements IController<ItinerarioDTO, Integer> {
     private final ContenutoService contenutoService;
 
     public ItinerarioController(ContenutoService contenutoService) {
         this.contenutoService = contenutoService;
     }
     @Override
-    public ResponseEntity<Itinerario> crea(Itinerario itinerario) {
-        Itinerario nuovoItinerario = contenutoService.creaNuovoItinerario(itinerario, itinerario.getContenuti());//TODO da fixare
+    public ResponseEntity<Itinerario> crea(ItinerarioDTO itinerario) {
+        Itinerario nuovoItinerario = contenutoService.creaNuovoItinerario(itinerario.toItinerario(), itinerario.getContenuti());
         return ResponseEntity.ok(nuovoItinerario);
     }
 
@@ -33,8 +34,8 @@ public class ItinerarioController implements IController<Itinerario, Integer> {
     }
 
     @Override
-    public ResponseEntity<?> modifica(Itinerario entity) {
-        contenutoService.modificaItinerario(entity);
+    public ResponseEntity<?> modifica(ItinerarioDTO entity) {
+        contenutoService.modificaItinerario(entity.toItinerario());
         return ResponseEntity.ok("{}");
     }
 

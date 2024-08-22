@@ -13,7 +13,8 @@ public class Itinerario extends Contenuto {
     @ManyToMany
     private List<Contenuto> contenuti;
 
-    public Itinerario(String nome, String descrizione, Date dataCreazione, int IdCreatore, int livelloDifficolta,Integer comune) {
+    public Itinerario(String nome, String descrizione, Date dataCreazione, Integer IdCreatore, Integer livelloDifficolta,
+                      Integer comune, List<Integer> contenuti) {
         super(nome, descrizione, dataCreazione, IdCreatore);
         this.livelloDifficolta = livelloDifficolta;
         this.contenuti = new ArrayList<>();

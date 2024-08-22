@@ -22,4 +22,6 @@ public interface IContenutoService {
     void modificaEvento(Evento event);
     void modificaPoi(PuntoDiInteresse pointOfInterest);
     void modificaItinerario(Itinerario itinerary);
+
+
 }

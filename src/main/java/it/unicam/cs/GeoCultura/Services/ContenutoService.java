@@ -55,8 +55,23 @@ public class ContenutoService implements IContenutoService{
 
     @Override
     public PuntoDiInteresse creaNuovoPuntoDiInteresse(PuntoDiInteresse puntoDiInteresse) {
+        if (puntoDiInteresse == null) {
+            throw new NullPointerException("Errore: Il punto di iteresse è nullo");
+        }
+        puntoDiInteresse.setCreatore(utenteRepository.findById(puntoDiInteresse.getCreatore().getID())
+                .orElseThrow(() -> new IllegalArgumentException("Erroe: Il creatore non è registrato nel sistema")));
+
+        puntoDiInteresse.setComune(comuneRepository.findById(puntoDiInteresse.getComune().getID())
+                .orElseThrow(() -> new IllegalArgumentException("Errore: Il comune non è presente nel sistema")));
+
+        puntoDiInteresse.setStatoApprovazione(approvazioneDefaultUtente(puntoDiInteresse.getCreatore().getID(),
+                puntoDiInteresse.getComune().getID())
+                .orElseThrow(() -> new IllegalArgumentException("Errore: l'utente non ha i permessi sufficienti " +
+                        "per creare un nuovo punto di interesse")));
+
         return puntoDiInteresseRepository.save(puntoDiInteresse);
     }
+
     @Override
     public Itinerario creaNuovoItinerario(Itinerario itinerario,  List<Integer> contenuti) {
         if (itinerario == null) {
@@ -78,7 +93,8 @@ public class ContenutoService implements IContenutoService{
         }
 
         itinerario.setStatoApprovazione(approvazioneDefaultUtente(itinerario.getCreatore().getID(), itinerario.getComune().getID())
-                .orElseThrow(() -> new IllegalArgumentException("Errore: l'utente non ha il ruolo necessario")));
+                .orElseThrow(() -> new IllegalArgumentException("Errore: l'utente non ha i permessi sufficienti " +
+                        "per creare un nuovo itinerario")));
 
         return itinerarioRepository.save(itinerario);
     }

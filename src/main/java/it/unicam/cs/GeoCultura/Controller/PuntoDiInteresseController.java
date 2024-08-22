@@ -1,21 +1,22 @@
 package it.unicam.cs.GeoCultura.Controller;
 
+import it.unicam.cs.GeoCultura.Model.DTO.PuntoDiInteresseDTO;
 import it.unicam.cs.GeoCultura.Model.PuntoDiInteresse;
 import it.unicam.cs.GeoCultura.Services.ContenutoService;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public class PuntoDiInteresseController implements IController<PuntoDiInteresse, Integer>{
-
+public class PuntoDiInteresseController implements IController<PuntoDiInteresseDTO, Integer>{
     private final ContenutoService contenutoService;
 
     public PuntoDiInteresseController(ContenutoService contenutoService) {
         this.contenutoService = contenutoService;
     }
     @Override
-    public ResponseEntity<PuntoDiInteresse> crea(PuntoDiInteresse entity) {
-        PuntoDiInteresse nuovoPuntoDiInteresse = contenutoService.creaNuovoPuntoDiInteresse(entity);
+    public ResponseEntity<PuntoDiInteresse> crea(PuntoDiInteresseDTO puntoDiInteresse) {
+        PuntoDiInteresse nuovoPuntoDiInteresse = contenutoService.creaNuovoPuntoDiInteresse(
+                puntoDiInteresse.toPuntoDiInteresse());
         return ResponseEntity.ok(nuovoPuntoDiInteresse);
     }
     @Override
@@ -29,8 +30,8 @@ public class PuntoDiInteresseController implements IController<PuntoDiInteresse,
     }
 
     @Override
-    public ResponseEntity<?> modifica(PuntoDiInteresse entity) {
-        contenutoService.modificaPoi(entity);
+    public ResponseEntity<?> modifica(PuntoDiInteresseDTO puntoDiInteresse) {
+        contenutoService.modificaPoi(puntoDiInteresse.toPuntoDiInteresse());
         return ResponseEntity.ok("{}");
     }
 

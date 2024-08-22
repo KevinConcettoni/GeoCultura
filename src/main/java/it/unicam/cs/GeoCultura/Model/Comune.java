@@ -28,4 +28,8 @@ public class Comune {
     public Comune(){
 
     }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
 }

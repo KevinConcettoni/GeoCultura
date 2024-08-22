@@ -10,15 +10,17 @@ public class Evento extends Contenuto {
     private Date dataFine;
     @Embedded
     private Posizione posizione;
-    private Comune comune;
+
 
     public Evento(String nome, String descrizione, Date dataCreazione, int IdCreatore,
-                  Date dataInizio, Date dataFine, Posizione posizione, Comune comune) {
+                  Date dataInizio, Date dataFine, Posizione posizione, Integer comune) {
         super(nome, descrizione, dataCreazione, IdCreatore);
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
         this.posizione = posizione;
-        this.comune = comune;
+        this.comune =new Comune();
+        this.comune.setID(comune);
+
     }
 
     public TipoContenuto getTipoContenuto(){

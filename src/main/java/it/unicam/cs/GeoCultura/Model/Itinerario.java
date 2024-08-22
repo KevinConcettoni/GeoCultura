@@ -13,10 +13,12 @@ public class Itinerario extends Contenuto {
     @ManyToMany
     private List<Contenuto> contenuti;
 
-    public Itinerario(String nome, String descrizione, Date dataCreazione, int IdCreatore, int livelloDifficolta) {
+    public Itinerario(String nome, String descrizione, Date dataCreazione, int IdCreatore, int livelloDifficolta,Integer comune) {
         super(nome, descrizione, dataCreazione, IdCreatore);
         this.livelloDifficolta = livelloDifficolta;
         this.contenuti = new ArrayList<>();
+        this.comune =new Comune();
+        this.comune.setID(comune);
     }
     public TipoContenuto getTipoContenuto(){
         return TipoContenuto.ITINERARIO;

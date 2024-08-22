@@ -11,10 +11,12 @@ public class PuntoDiInteresse extends Contenuto {
     private Posizione posizione;
 
     public PuntoDiInteresse(String nome, String descrizione, Date dataCreazione, int IdCreatore, CategoriaPOI categoria,
-                            Posizione posizione) {
+                            Posizione posizione, Integer comune) {
         super(nome, descrizione, dataCreazione, IdCreatore);
         this.categoria = categoria;
         this.posizione = posizione;
+        this.comune =new Comune();
+        this.comune.setID(comune);
     }
     public TipoContenuto getTipoContenuto(){
         return TipoContenuto.PUNTO_DI_INTERESSE;

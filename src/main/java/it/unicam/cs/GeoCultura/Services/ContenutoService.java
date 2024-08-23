@@ -150,4 +150,34 @@ public class ContenutoService implements IContenutoService{
         itinerarioRepository.save(itinerario);
     }
 
+    @Override
+    public void approvaItinerario(Integer id) {
+        itinerarioRepository.findById(id).ifPresent(
+                i -> {
+                    i.setStatoApprovazione(StatoApprovazione.APPROVATO);
+                    itinerarioRepository.save(i);
+                }
+        );
+    }
+
+    @Override
+    public void approvaPuntoDiInteresse(Integer id) {
+        puntoDiInteresseRepository.findById(id).ifPresent(
+                p -> {
+                    p.setStatoApprovazione(StatoApprovazione.APPROVATO);
+                    puntoDiInteresseRepository.save(p);
+                }
+        );
+    }
+
+    @Override
+    public void approvaEvento(Integer id) {
+        eventoRepository.findById(id).ifPresent(
+                e -> {
+                    e.setStatoApprovazione(StatoApprovazione.APPROVATO);
+                    eventoRepository.save(e);
+                }
+        );
+    }
+
 }

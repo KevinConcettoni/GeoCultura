@@ -13,11 +13,25 @@ import java.util.List;
 @RequestMapping("/contenuto")
 public class ContenutoController {
     private final ContenutoService contenutoService;
-
-    //TODO: Aggiungere approvazioni
-
     public ContenutoController(ContenutoService contenutoService) {
         this.contenutoService = contenutoService;
     }
+    @PutMapping("/approva/poi/{id}")
+    public ResponseEntity<?> approvaPuntoDiInteresse(@PathVariable Integer id, @RequestBody Integer idUtente){
+        if (contenutoService.verificaRuoliApprovazione(id, idUtente))
+            return ResponseEntity.badRequest().body("Non hai i permessi per approvare il contenuto");
+        contenutoService.approvaPuntoDiInteresse(id);
+        return ResponseEntity.ok().body("");
+    }
 
+    @PutMapping("/approva/itinerario/{id}")
+    public ResponseEntity<?> approvaItinerario(@PathVariable Integer id, @RequestBody Integer idUtente)
+    {
+        if (contenutoService.verificaRuoliApprovazione(id, idUtente))
+            return ResponseEntity.badRequest().body("Non hai i permessi per approvare il contenuto");
+        contenutoService.approvaItinerario(id);
+        return ResponseEntity.ok().body("");
+    }
 }
+
+

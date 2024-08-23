@@ -179,5 +179,17 @@ public class ContenutoService implements IContenutoService{
                 }
         );
     }
+    public boolean verificaRuoliApprovazione(Integer idContenuto, Integer idUtente){
+        Contenuto contenuto = contenutoRepository.findById(idContenuto)
+                .orElseThrow(() -> new IllegalArgumentException("Errore: il contenuto non esiste"));
+        RuoloUtente ruolo = ruoliComuneRepository.cercaRuoliPerId(idUtente)
+                .stream()
+                .filter(ruoloUtenteComune -> ruoloUtenteComune.getComune().getID().equals(
+                        contenuto.getComune().getID()))
+                .map(RuoloUtenteComune::getRuolo)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Errore: l'utente non ha un ruole in questo comune"));
 
+        return ruolo == RuoloUtente.CURATORE;
+    }
 }

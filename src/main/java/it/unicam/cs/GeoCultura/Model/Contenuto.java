@@ -19,7 +19,7 @@ public abstract class Contenuto {
     @ManyToOne
     Comune comune;
 
-    public Contenuto(String nome, String descrizione, Date dataCreazione, int IdCreatore){
+    public Contenuto(String nome, String descrizione, Date dataCreazione, Integer IdCreatore){
         this.nome = nome;
         this.descrizione = descrizione;
         this.dataCreazione = dataCreazione;
@@ -33,6 +33,10 @@ public abstract class Contenuto {
 
     public Comune getComune() {
         return comune;
+    }
+
+    public Integer getID() {
+        return ID;
     }
 
     public void setComune(Comune comune) {

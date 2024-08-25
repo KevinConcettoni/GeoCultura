@@ -27,7 +27,7 @@ public class Utente {
     public void setID(int ID) {
         this.ID = ID;
     }
-    public int getID() {
+    public Integer getID() {
         return ID;
     }
     public String getUsername(){

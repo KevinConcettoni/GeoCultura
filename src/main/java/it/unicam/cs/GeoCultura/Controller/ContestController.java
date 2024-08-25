@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/contest")
 public class ContestController implements IController<Contest, Integer> {
@@ -18,10 +20,10 @@ public class ContestController implements IController<Contest, Integer> {
         this.contestService = contestService;
     }
 
-    @Override
-    public ResponseEntity<Contest> crea (@RequestBody Contest contest)
+    @Override//TODO Fixare
+    public ResponseEntity<Contest> crea (@RequestBody Contest contest, List<Integer> contenuti)
     {
-        Contest newContest = contestService.creaContest(contest);
+        Contest newContest = contestService.creaContest(contest,contenuti);
         return ResponseEntity.ok(newContest);
     }
 

@@ -18,6 +18,10 @@ public class RuoloUtenteComune {
     private Utente utente;
 
 
+    public void setRuolo(RuoloUtente ruolo) {
+        this.ruolo = ruolo;
+    }
+
     public RuoloUtenteComune(Comune comune, RuoloUtente ruolo, Utente utente) {
         this.comune = comune;
         this.ruolo = ruolo;

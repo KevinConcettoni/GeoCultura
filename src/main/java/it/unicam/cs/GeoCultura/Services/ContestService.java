@@ -1,19 +1,82 @@
 package it.unicam.cs.GeoCultura.Services;
 
 import it.unicam.cs.GeoCultura.Model.Contest;
+import it.unicam.cs.GeoCultura.Model.RuoloUtente;
+import it.unicam.cs.GeoCultura.Repositories.ContenutoRepository;
 import it.unicam.cs.GeoCultura.Repositories.ContestRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 @Service
 public class ContestService implements IContestService{
 
     private final ContestRepository contestRepository;
+    private final RuoliComuneService ruoliComuneService;
+    private final ComuneService comuneService;
+    private final UtenteService utenteService;
+    private final ContenutoRepository contenutoRepository;
 
-    public ContestService(ContestRepository contestRepository) {
+    public ContestService(ContestRepository contestRepository, RuoliComuneService ruoliComuneService, ComuneService comuneService, UtenteService utenteService, ContenutoService contenutoService, ContenutoRepository contenutoRepository) {
         this.contestRepository = contestRepository;
+        this.ruoliComuneService = ruoliComuneService;
+        this.comuneService = comuneService;
+        this.utenteService = utenteService;
+        this.contenutoRepository = contenutoRepository;
     }
 
     @Override
-    public Contest creaContest(Contest contest) {
+    public Contest creaContest(Contest contest, List<Integer> contenuti) {
+
+        if (contest == null)
+        {
+            throw new IllegalArgumentException("Errore: contest nullo");
+        }
+
+        if (ruoliComuneService.getRuolo(contest.getCreatore().getID(), contest.getComune().getID())
+                != RuoloUtente.ANIMATORE) {
+            throw new IllegalStateException("Errore: Devi essere un animatore");
+        }
+
+        // fill in partially filled data points
+        contest.setComune(comuneService.getById
+                (contest.getComune().getID()));
+        contest.setCreatore(utenteService.getUtente(contest.getCreatore().getID()));
+
+        // subscribe all passed contents to the contest!
+        contenuti.forEach(c -> {
+            contest.iscrizione(contenutoRepository.findById(c)
+                    .orElseThrow(() -> new IllegalArgumentException("Errore: il contenuto non esiste ")));
+        });
+
         return contestRepository.save(contest);
+    }
+
+    @Override
+    public Contest getContest(Integer id) {
+        return this.contestRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Contest> getAllContest() {
+        return StreamSupport.stream(contestRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void modificaContest(Contest contest, List<Integer> contenuti) {
+
+    }
+
+    @Override
+    public void iscrizioneContenuto(Integer contentID, Integer contestID) {
+
+    }
+
+    @Override
+    public void chiusuraContest(Integer contestID, Integer contenutoVincitoreID) {
+
     }
 }

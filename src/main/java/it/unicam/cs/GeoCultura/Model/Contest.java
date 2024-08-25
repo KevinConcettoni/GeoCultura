@@ -42,6 +42,22 @@ public class Contest{
         this.aperto = true;
     }
 
+    public Utente getCreatore() {
+        return creatore;
+    }
+
+    public Comune getComune() {
+        return comune;
+    }
+
+    public void setComune(Comune comune) {
+        this.comune = comune;
+    }
+
+    public void setCreatore(Utente creatore) {
+        this.creatore = creatore;
+    }
+
     public void iscrizione(Contenuto contenuto) {
         for (Contenuto c : contenuti) {
             if (c.getID().equals(contenuto.getID())) {

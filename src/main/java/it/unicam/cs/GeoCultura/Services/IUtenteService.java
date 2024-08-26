@@ -26,4 +26,10 @@ public interface IUtenteService {
      * @return l'utente in base al suo id
      */
     Utente getUtente(int id);
+
+    /**
+     * Elimina un utente
+     * @param id l'id dell'utente da eliminare
+     */
+    void eliminaUtente(Integer id);
 }

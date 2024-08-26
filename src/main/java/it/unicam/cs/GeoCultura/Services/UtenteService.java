@@ -47,4 +47,9 @@ public class UtenteService implements IUtenteService{
     public Utente getUtente(int id) {
         return utenteRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public void eliminaUtente(Integer id) {
+        //TODO: implementare
+    }
 }

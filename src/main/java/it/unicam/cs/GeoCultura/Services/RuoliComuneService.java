@@ -24,13 +24,13 @@ public class RuoliComuneService implements IRuoliComuneService{
         }
         return ruoliComuneRepository.save(ruoloComune);
     }
-
-    public RuoloUtente getRuolo(Integer utenteId, Integer comuneId) {
-        List<RuoloUtenteComune> roles = ruoliComuneRepository.cercaRuoliPerId(utenteId);
+    @Override
+    public RuoloUtente getRuolo(Integer idUtente, Integer idComune) {
+        List<RuoloUtenteComune> roles = ruoliComuneRepository.cercaRuoliPerId(idUtente);
 
         for (RuoloUtenteComune i : roles) {
-            if (i.getComune().getID().equals(comuneId)) {
-                comuneService.getById(comuneId);
+            if (i.getComune().getID().equals(idComune)) {
+                comuneService.getById(idComune);
 
                 return i.getRuolo();
             }
@@ -38,15 +38,13 @@ public class RuoliComuneService implements IRuoliComuneService{
 
         throw new IllegalArgumentException("L'utente non ha un ruolo in questo comune");
     }
-
-    public void setRuolo(Integer UtenteId, Integer comuneId, RuoloUtente ruoloUtente) {
-        List<RuoloUtenteComune> roles = ruoliComuneRepository.cercaRuoliPerId(UtenteId);
+    @Override
+    public void setRuolo(Integer idUtente, Integer idComune, RuoloUtente ruoloUtente) {
+        List<RuoloUtenteComune> roles = ruoliComuneRepository.cercaRuoliPerId(idUtente);
 
         for (RuoloUtenteComune i : roles) {
-            if (i.getComune().getID().equals(comuneId)) {
-                // throw if the townHall does not exist
-                comuneService.getById(comuneId);
-
+            if (i.getComune().getID().equals(idComune)) {
+                comuneService.getById(idComune);
                 i.setRuolo(ruoloUtente);
                 ruoliComuneRepository.save(i);
                 return;

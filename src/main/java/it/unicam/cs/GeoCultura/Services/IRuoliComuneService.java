@@ -1,5 +1,6 @@
 package it.unicam.cs.GeoCultura.Services;
 
+import it.unicam.cs.GeoCultura.Model.RuoloUtente;
 import it.unicam.cs.GeoCultura.Model.RuoloUtenteComune;
 
 public interface IRuoliComuneService {
@@ -8,4 +9,6 @@ public interface IRuoliComuneService {
      * @return il nuovo ruolo dell'utente all'interno del comune
      */
     RuoloUtenteComune creaNuovoRuolo(RuoloUtenteComune ruoloComune);
+    RuoloUtente getRuolo(Integer idUtente, Integer idComune);
+    void setRuolo(Integer idUtente, Integer idComune, RuoloUtente ruoloUtente);
 }

@@ -26,9 +26,19 @@ public class ComuneService implements IComuneService {
         return StreamSupport.stream(comuneRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
     }
-
+    @Override
     public Comune getById(Integer id) {
         return comuneRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Errore: comune non trovato"));
+    }
+
+    @Override
+    public Comune modificaComune(Comune comune, Integer id) {
+        return null; // TODO: implementare
+    }
+
+    @Override
+    public void elimina(Integer id) {
+        // TODO: implementare
     }
 }

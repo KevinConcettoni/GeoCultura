@@ -1,8 +1,10 @@
 package it.unicam.cs.GeoCultura.Controller;
 
+import it.unicam.cs.GeoCultura.Model.DTO.EventoDTO;
 import it.unicam.cs.GeoCultura.Model.Evento;
 import it.unicam.cs.GeoCultura.Services.ContenutoService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,21 +12,21 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/evento")
-public class EventoController implements IController<Evento, Integer> {
+public class EventoController implements IController<EventoDTO, Integer> {
     private final ContenutoService contenutoService;
 
     public EventoController(ContenutoService contenutoService) {
         this.contenutoService = contenutoService;
     }
     @Override
-    public ResponseEntity<Evento> crea(Evento entity) {
-        Evento nuovoEvento = contenutoService.creaNuovoEvento(entity);
+    public ResponseEntity<Evento> crea(EventoDTO evento) {
+        Evento nuovoEvento = contenutoService.creaNuovoEvento(evento.toEvento());
         return ResponseEntity.ok(nuovoEvento);
     }
 
     @Override
-    public ResponseEntity<Evento> getById(Integer id) {
-        return ResponseEntity.ok(contenutoService.getEvento(Math.toIntExact(id))); //Da rivedere
+    public ResponseEntity<Evento> getById(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(contenutoService.getEvento(id));
     }
 
     @Override
@@ -33,8 +35,8 @@ public class EventoController implements IController<Evento, Integer> {
     }
 
     @Override
-    public ResponseEntity<?> modifica(Evento  entity) {
-        contenutoService.modificaEvento(entity);
+    public ResponseEntity<?> modifica(EventoDTO  evento) {
+        contenutoService.modificaEvento(evento.toEvento());
         return ResponseEntity.ok("{}");
     }
 

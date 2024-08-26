@@ -2,10 +2,8 @@ package it.unicam.cs.GeoCultura.Model;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 @Entity
 @Table(name = "Contest")
 public class Contest{
@@ -29,16 +27,19 @@ public class Contest{
 
     private  boolean aperto;
 
-    public Contest(String nome, String descrizione, Date dataInizio, Date dataFine,
-                   String tipo, String regole, Comune comune, Utente creatore) {
+    public Contest(String nome, String descrizione, Date dataInizio, Date dataFine, List<Integer> contenuti,
+                   String tipo, String regole, Integer comune, Integer creatore) {
         this.nome = nome;
         this.descrizione = descrizione;
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
+        this.contenuti = new ArrayList<>();
         this.tipo = tipo;
         this.regole = regole;
-        this.comune = comune;
-        this.creatore = creatore;
+        this.comune = new Comune();
+        this.comune.setID(comune);
+        this.creatore = new Utente();
+        this.creatore.setID(comune);
         this.aperto = true;
     }
 

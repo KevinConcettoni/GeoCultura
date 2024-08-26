@@ -1,6 +1,7 @@
 package it.unicam.cs.GeoCultura.Controller;
 
 import it.unicam.cs.GeoCultura.Model.Contest;
+import it.unicam.cs.GeoCultura.Model.DTO.ContestDTO;
 import it.unicam.cs.GeoCultura.Model.Utente;
 import it.unicam.cs.GeoCultura.Services.ContestService;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +14,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/contest")
-public class ContestController implements IController<Contest, Integer> {
+public class ContestController implements IController<ContestDTO, Integer> {
     private final ContestService contestService;
 
     public ContestController(ContestService contestService) {
         this.contestService = contestService;
     }
 
-    @Override//TODO Fixare
-    public ResponseEntity<Contest> crea (@RequestBody Contest contest, List<Integer> contenuti)
+    @Override
+    public ResponseEntity<Contest> crea (ContestDTO contest)
     {
-        Contest newContest = contestService.creaContest(contest,contenuti);
+        Contest newContest = contestService.creaContest(contest.toContest(), contest.getContenuti());
         return ResponseEntity.ok(newContest);
     }
 
@@ -38,7 +39,7 @@ public class ContestController implements IController<Contest, Integer> {
     }
 
     @Override
-    public ResponseEntity<?> modifica(Contest entity) {
+    public ResponseEntity<?> modifica(ContestDTO entity) {
         return null;//TODO Da Implementare
     }
 

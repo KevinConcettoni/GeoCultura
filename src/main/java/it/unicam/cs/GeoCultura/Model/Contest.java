@@ -55,6 +55,10 @@ public class Contest{
         this.comune = comune;
     }
 
+    public Integer getID() {
+        return ID;
+    }
+
     public void setCreatore(Utente creatore) {
         this.creatore = creatore;
     }
@@ -67,6 +71,14 @@ public class Contest{
         }
 
         this.contenuti.add(contenuto);
+    }
+
+    public List<Contenuto> getContenuti() {
+        return contenuti;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
     }
 
     public Set<Integer> chiusuraContest(Integer idVincitore) {

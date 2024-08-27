@@ -29,7 +29,7 @@ public class UtenteController implements IController<UtenteDTO, Integer> {
     }
 
     @Override
-    public ResponseEntity<?> modifica(UtenteDTO utente) {
+    public ResponseEntity<?> modifica(UtenteDTO utente, Integer id) {
         return ResponseEntity.badRequest().body("Funzionalità non ancora implementata");
     }
 

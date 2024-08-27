@@ -30,7 +30,7 @@ public class PuntoDiInteresseController implements IController<PuntoDiInteresseD
     }
 
     @Override
-    public ResponseEntity<?> modifica(PuntoDiInteresseDTO puntoDiInteresse) {
+    public ResponseEntity<?> modifica(PuntoDiInteresseDTO puntoDiInteresse, Integer id) {
         contenutoService.modificaPoi(puntoDiInteresse.toPuntoDiInteresse());
         return ResponseEntity.ok("{}");
     }

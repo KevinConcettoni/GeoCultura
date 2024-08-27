@@ -31,7 +31,7 @@ public class ComuneController implements  IController<ComuneDTO, Integer>{
     }
 
     @Override
-    public ResponseEntity<?> modifica(ComuneDTO entity) {
+    public ResponseEntity<?> modifica(ComuneDTO entity, Integer id) {
         return null;//TODO Da Implementare
     }
 

@@ -5,10 +5,7 @@ import it.unicam.cs.GeoCultura.Model.DTO.ContestDTO;
 import it.unicam.cs.GeoCultura.Model.Utente;
 import it.unicam.cs.GeoCultura.Services.ContestService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,18 +26,23 @@ public class ContestController implements IController<ContestDTO, Integer> {
     }
 
     @Override
-    public ResponseEntity<?> getById(Integer integer) {
-        return null;//TODO Da Implementare
+    public ResponseEntity<?> getById(@PathVariable("id")Integer id) {
+        return ResponseEntity.ok(contestService.getContest(id));
     }
 
     @Override
     public ResponseEntity<?> getAll() {
-        return null;//TODO Da Implementare
+        return ResponseEntity.ok(contestService.getAllContest());
     }
 
     @Override
-    public ResponseEntity<?> modifica(ContestDTO entity) {
-        return null;//TODO Da Implementare
+    public ResponseEntity<?> modifica(ContestDTO contestDTO, Integer id) {
+        Contest cont = contestDTO.toContest();
+        cont.setID(id);
+
+        this.contestService.modificaContest(cont, contestDTO.getContenuti());
+
+        return ResponseEntity.ok("{}");
     }
 
     @Override

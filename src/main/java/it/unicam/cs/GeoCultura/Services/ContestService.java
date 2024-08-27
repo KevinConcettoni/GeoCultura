@@ -1,5 +1,6 @@
 package it.unicam.cs.GeoCultura.Services;
 
+import it.unicam.cs.GeoCultura.Model.Contenuto;
 import it.unicam.cs.GeoCultura.Model.Contest;
 import it.unicam.cs.GeoCultura.Model.RuoloUtente;
 import it.unicam.cs.GeoCultura.Repositories.ContenutoRepository;
@@ -40,12 +41,10 @@ public class ContestService implements IContestService{
             throw new IllegalStateException("Errore: Devi essere un animatore");
         }
 
-        // fill in partially filled data points
         contest.setComune(comuneService.getById
                 (contest.getComune().getID()));
         contest.setCreatore(utenteService.getUtente(contest.getCreatore().getID()));
 
-        // subscribe all passed contents to the contest!
         contenuti.forEach(c -> {
             contest.iscrizione(contenutoRepository.findById(c)
                     .orElseThrow(() -> new IllegalArgumentException("Errore: il contenuto non esiste ")));
@@ -67,7 +66,24 @@ public class ContestService implements IContestService{
 
     @Override
     public void modificaContest(Contest contest, List<Integer> contenuti) {
+        if (contest == null) {
+            throw new IllegalArgumentException("Errore: Contest Nullo");
+        }
 
+        Contest original = contestRepository.findById(contest.getID())
+                .orElseThrow(() -> new IllegalArgumentException("Errore: Contest non esiste"));
+
+        for (Integer id : contenuti)
+        {
+            Contenuto cont = this.contenutoRepository.findById(id)
+                    .orElseThrow(() -> new IllegalArgumentException("Errore: Contest non esiste"));
+            contest.getContenuti().add(cont);
+        }
+
+        contest.setComune(original.getComune());
+        contest.setCreatore(original.getCreatore());
+
+        contestRepository.save(contest);
     }
 
     @Override

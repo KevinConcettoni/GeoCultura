@@ -16,6 +16,16 @@ public class ContenutoController {
     public ContenutoController(ContenutoService contenutoService) {
         this.contenutoService = contenutoService;
     }
+
+    @PutMapping("/approva/evento/{id}")
+    public ResponseEntity<?> approvaEvento(@PathVariable Integer id, @RequestBody Integer utenterId)
+    {
+        if (contenutoService.verificaRuoliApprovazione(id, utenterId))
+            return ResponseEntity.badRequest().body("Non hai i permessi per approvare il contenuto");
+
+        contenutoService.approvaEvento(id);
+        return ResponseEntity.ok().body("");
+    }
     @PutMapping("/approva/poi/{id}")
     public ResponseEntity<?> approvaPuntoDiInteresse(@PathVariable Integer id, @RequestBody Integer idUtente){
         if (contenutoService.verificaRuoliApprovazione(id, idUtente))

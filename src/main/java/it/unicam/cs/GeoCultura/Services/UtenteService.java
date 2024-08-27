@@ -50,6 +50,8 @@ public class UtenteService implements IUtenteService{
 
     @Override
     public void eliminaUtente(Integer id) {
-        //TODO: implementare
+        if(utenteRepository.existsById(id))
+            utenteRepository.delete((utenteRepository.findById(id).get()));
+        else throw new IllegalArgumentException("L'utente non esiste");
     }
 }

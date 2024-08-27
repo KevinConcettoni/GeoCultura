@@ -5,6 +5,7 @@ import it.unicam.cs.GeoCultura.Model.Utente;
 import it.unicam.cs.GeoCultura.Services.UtenteService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 
 @RestController
 @RequestMapping("/utenti")
@@ -28,19 +29,20 @@ public class UtenteController implements IController<UtenteDTO, Integer> {
     }
 
     @Override
-    public ResponseEntity<?> modifica(UtenteDTO entity) {
-        return null;//TODO Da Implementare
+    public ResponseEntity<?> modifica(UtenteDTO utente) {
+        return ResponseEntity.badRequest().body("Funzionalità non ancora implementata");
     }
 
     @Override
-    public ResponseEntity<?> elimina(Integer integer) {
-        return null;//TODO Da Implementare
+    public ResponseEntity<?> elimina(Integer idUtente) {
+        utenteService.eliminaUtente(idUtente);
+        return ResponseEntity.ok("Utente eliminato correttamente");
     }
 
     @Override
-    public ResponseEntity<?> getById(@PathVariable("ID") Integer ID)
+    public ResponseEntity<?> getById(@PathVariable("Id") Integer id)
     {
-        return ResponseEntity.ok(utenteService.getUtente(ID));
+        return ResponseEntity.ok(utenteService.getUtente(id));
     }
 
 }

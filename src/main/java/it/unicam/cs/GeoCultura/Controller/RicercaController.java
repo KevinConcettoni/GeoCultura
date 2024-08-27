@@ -15,19 +15,17 @@ public class RicercaController {
     public RicercaController(RicercaService ricercaService) {
         this.ricercaService = ricercaService;
     }
-    // TODO: gestione tipo contenuto e formato date
     @GetMapping("/contenuto")
     public List<Contenuto> ricercaContenuto (@RequestParam String nome,
                                              @RequestParam String descrizione,
-                                             @RequestParam Date dataCreazione,
-                                             @RequestParam String tipo){
-        return ricercaService.ricercaContenuto(nome, descrizione, dataCreazione, tipo);
+                                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dataCreazione){
+        return ricercaService.ricercaContenuto(nome, descrizione, dataCreazione);
     }
 
     @GetMapping("/itinerario")
     public List<Itinerario> ricercaItinerario(@RequestParam String nome,
                                               @RequestParam String descrizione,
-                                              @RequestParam Date dataCreazione,
+                                              @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dataCreazione,
                                               @RequestParam int livelloDifficolta){
         return ricercaService.ricercaItinerario(nome, descrizione, dataCreazione, livelloDifficolta);
     }
@@ -51,11 +49,18 @@ public class RicercaController {
     @GetMapping("/evento")
     public List<Evento> ricercaEvento(@RequestParam String nome,
                                       @RequestParam String descrizione,
-                                      @RequestParam Date dataInizio,
-                                      @RequestParam Date dataFine) {
+                                      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dataInizio,
+                                      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dataFine) {
         return ricercaService.ricercaEvento(nome, descrizione, dataInizio, dataFine);
     }
 
-    //TODO: aggiungere ricerca utenti
+    @GetMapping("/ricercaUtenteRuolo")
+    public List<Utente> ricercaUtente(@RequestParam int role){
+        return ricercaService.ricercaUtenteRuolo(role);
+    }
+    @GetMapping("/ricercaUtenteEmail")
+    public List<Utente> ricercaUtente(@RequestParam String email){
+        return ricercaService.ricercaUtenteEmail(email);
+    }
 
 }

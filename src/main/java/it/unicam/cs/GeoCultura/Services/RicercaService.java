@@ -16,13 +16,17 @@ public class RicercaService implements IRicercaService{
     private final PuntoDiInteresseRepository puntoDiInteresseRepository;
     private final EventoRepository eventoRepository;
     private final ContenutoRepository contenutoRepository;
+    private final RuoliComuneRepository ruoliComuneRepository;
+    private final UtenteRepository utenteRepository;
 
-    public RicercaService(ContestRepository contestRepository, ItinerarioRepository itinerarioRepository, PuntoDiInteresseRepository puntoDiInteresseRepository, EventoRepository eventoRepository, ContenutoRepository contenutoRepository) {
+    public RicercaService(ContestRepository contestRepository, ItinerarioRepository itinerarioRepository, PuntoDiInteresseRepository puntoDiInteresseRepository, EventoRepository eventoRepository, ContenutoRepository contenutoRepository, ComuneRepository comuneRepository, RuoliComuneRepository ruoliComuneRepository, UtenteRepository utenteRepository) {
         this.contestRepository = contestRepository;
         this.itinerarioRepository = itinerarioRepository;
         this.puntoDiInteresseRepository = puntoDiInteresseRepository;
         this.eventoRepository = eventoRepository;
         this.contenutoRepository = contenutoRepository;
+        this.ruoliComuneRepository = ruoliComuneRepository;
+        this.utenteRepository = utenteRepository;
     }
 
 
@@ -32,9 +36,8 @@ public class RicercaService implements IRicercaService{
     }
 
     @Override
-    public List<Contenuto> ricercaContenuto(String nome, String descrizione, Date dataCreazione, String tipoContenuto) {
-        //TODO Implementare
-        return List.of();
+    public List<Contenuto> ricercaContenuto(String nome, String descrizione, Date dataCreazione) {
+        return contenutoRepository.cercaPerNomeDescrizioneData(nome, descrizione, dataCreazione);
     }
 
     @Override
@@ -51,5 +54,15 @@ public class RicercaService implements IRicercaService{
     public List<Evento> ricercaEvento(String nome, String descrizione, Date dataInizio, Date dataFine) {
         return eventoRepository.ricercaEvento(
                 nome, descrizione, dataInizio, dataFine);
+    }
+
+    @Override
+    public List<Utente> ricercaUtenteRuolo(int ruolo) {
+        return ruoliComuneRepository.cercaUtenteRuolo(RuoloUtente.values()[ruolo]);
+    }
+
+    @Override
+    public List<Utente> ricercaUtenteEmail(String email) {
+        return utenteRepository.ricercaPerEmail(email);
     }
 }

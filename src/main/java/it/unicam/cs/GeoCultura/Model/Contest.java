@@ -59,6 +59,10 @@ public class Contest{
         return ID;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
     public void setCreatore(Utente creatore) {
         this.creatore = creatore;
     }

@@ -1,13 +1,14 @@
 package it.unicam.cs.GeoCultura.Services;
 
-import it.unicam.cs.GeoCultura.Model.Contenuto;
-import it.unicam.cs.GeoCultura.Model.Contest;
-import it.unicam.cs.GeoCultura.Model.RuoloUtente;
+import it.unicam.cs.GeoCultura.Model.*;
 import it.unicam.cs.GeoCultura.Repositories.ContenutoRepository;
 import it.unicam.cs.GeoCultura.Repositories.ContestRepository;
+import it.unicam.cs.GeoCultura.Repositories.NotificaRepository;
+import it.unicam.cs.GeoCultura.Repositories.UtenteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -19,13 +20,20 @@ public class ContestService implements IContestService{
     private final ComuneService comuneService;
     private final UtenteService utenteService;
     private final ContenutoRepository contenutoRepository;
+    private final UtenteRepository utenteRepository;
+    private final NotificaRepository notificaRepository;
 
-    public ContestService(ContestRepository contestRepository, RuoliComuneService ruoliComuneService, ComuneService comuneService, UtenteService utenteService, ContenutoService contenutoService, ContenutoRepository contenutoRepository) {
+    public ContestService(ContestRepository contestRepository, RuoliComuneService ruoliComuneService,
+                          ComuneService comuneService, UtenteService utenteService,
+                          ContenutoService contenutoService, ContenutoRepository contenutoRepository,
+                          UtenteRepository utenteRepository, NotificaRepository notificaRepository) {
         this.contestRepository = contestRepository;
         this.ruoliComuneService = ruoliComuneService;
         this.comuneService = comuneService;
         this.utenteService = utenteService;
         this.contenutoRepository = contenutoRepository;
+        this.utenteRepository = utenteRepository;
+        this.notificaRepository = notificaRepository;
     }
 
     @Override
@@ -99,7 +107,41 @@ public class ContestService implements IContestService{
     }
 
     @Override
-    public void chiusuraContest(Integer idContest, Integer IdContenutoVincitore) {
+    public void chiusuraContest(Integer idContest, Integer idContenutoVincitore) {
+        Contest contest = contestRepository.findById(idContest)
+                .orElseThrow(() -> new IllegalArgumentException("Errore: Il contest non esiste"));
 
+        Contenuto contenutoVincitore = contenutoRepository.findById(idContenutoVincitore)
+                .orElseThrow(() -> new IllegalArgumentException("Errore: Il contenuto non esiste"));
+
+        // lista degli utenti che non hanno vinto il contest
+        Set<Integer> perdenti = contest.chiusuraContest(idContenutoVincitore);
+
+        contestRepository.save(contest);
+
+        perdenti.remove(contenutoVincitore.getCreatore().getID());
+
+        // invia notifica risultati ai partecipenti
+        perdenti.forEach(idPerdenti -> {
+            Utente utente = utenteRepository.findById(idPerdenti)
+                    .orElseThrow(() -> new IllegalArgumentException("Errore: l'utente non esiste"));
+
+            Notifica notifica = new Notifica(String.format("Mi dispiace! " + utente.getUsername()),
+                    String.format("Purtroppo non hai vinto questo contest: ") + contest.getNome());
+            notifica = notificaRepository.save(notifica);
+
+            utente.aggiungiNotifica(notifica);
+
+            utenteRepository.save(utente);
+        });
+
+        // utente vincitore
+        Utente vincitore = contenutoVincitore.getCreatore();
+        Notifica notifica = new Notifica(String.format("Complimenti ! " + vincitore.getUsername()),
+                String.format("Hai vinto questo contest: ") + contest.getNome());
+        notifica = notificaRepository.save(notifica);
+
+        vincitore.aggiungiNotifica(notifica);
+        utenteRepository.save(vincitore);
     }
 }

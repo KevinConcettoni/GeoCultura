@@ -1,6 +1,7 @@
 package it.unicam.cs.GeoCultura.Model;
 
 import jakarta.persistence.*;
+import org.aspectj.weaver.ast.Not;
 
 import java.util.Date;
 import java.util.List;
@@ -40,5 +41,13 @@ public class Utente {
     }
     public String getEmail() {
         return email;
+    }
+
+    /**
+     * Aggiunge una notifica alla lista dell'utente
+     * @param notifica la notifica da aggiungere
+     */
+    public void aggiungiNotifica(Notifica notifica){
+        this.notifiche.add(notifica);
     }
 }

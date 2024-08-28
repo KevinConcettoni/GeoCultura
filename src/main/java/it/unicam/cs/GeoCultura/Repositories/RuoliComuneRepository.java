@@ -15,5 +15,5 @@ public interface RuoliComuneRepository extends CrudRepository<RuoloUtenteComune,
     @Query("SELECT c FROM RuoloUtenteComune c WHERE c.utente.ID = :IdUtente")
     List<RuoloUtenteComune> cercaRuoliPerId(@Param("IdUtente") Integer IdUtente);
     @Query("SELECT ruc.utente FROM RuoloUtenteComune ruc WHERE ruc.ruolo = :ruolo")
-    List<Utente> cercaUtenteRuolo(@Param("ruoloUtente") RuoloUtente ruoloUtente);
+    List<Utente> cercaUtenteRuolo(@Param("ruolo") RuoloUtente ruoloUtente);
 }

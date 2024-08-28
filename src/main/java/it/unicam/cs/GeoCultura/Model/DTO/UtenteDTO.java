@@ -13,6 +13,15 @@ public class UtenteDTO {
     private Integer comune;
     private int ruolo;
 
+    public UtenteDTO(String username, String nomeCompleto, String email, Date dataRegistrazione, Integer comune, int ruolo) {
+        this.username = username;
+        this.nomeCompleto = nomeCompleto;
+        this.email = email;
+        this.dataRegistrazione = dataRegistrazione;
+        this.comune = comune;
+        this.ruolo = ruolo;
+    }
+
     public Utente toUtente()
     {
         return new Utente(this.username, this.nomeCompleto, this.email, this.dataRegistrazione);

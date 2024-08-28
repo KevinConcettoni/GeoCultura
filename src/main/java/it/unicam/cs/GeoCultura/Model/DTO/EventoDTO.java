@@ -6,7 +6,6 @@ import it.unicam.cs.GeoCultura.Model.Posizione;
 import java.util.Date;
 
 public class EventoDTO extends ContenutoDTO{
-
     private Date dataInizio;
     private Date dataFine;
     private Posizione posizione;
@@ -23,5 +22,17 @@ public class EventoDTO extends ContenutoDTO{
     public Evento toEvento(){
         return new Evento(this.getNome(), this.getDescrizione(), this.getDataCreazione(), this.getCreatore(),
                 this.dataInizio, this.dataFine, this.posizione, this.getComune());
+    }
+
+    public Date getDataInizio() {
+        return dataInizio;
+    }
+
+    public Date getDataFine() {
+        return dataFine;
+    }
+
+    public Posizione getPosizione() {
+        return posizione;
     }
 }

@@ -22,7 +22,9 @@ public class Evento extends Contenuto {
         this.comune.setID(comune);
 
     }
+    public Evento(){
 
+    }
     public TipoContenuto getTipoContenuto(){
         return TipoContenuto.EVENTO;
     }

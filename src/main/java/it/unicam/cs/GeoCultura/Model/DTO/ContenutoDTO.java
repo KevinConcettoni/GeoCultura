@@ -16,6 +16,7 @@ public class ContenutoDTO {
 
     public ContenutoDTO(String nome, String descrizione, Date dataCreazione, Integer creatore, Integer comune) {
         this.nome = nome;
+        this.descrizione = descrizione;
         this.dataCreazione = dataCreazione;
         this.creatore = creatore;
         this.comune = comune;

@@ -40,9 +40,11 @@ public class UtenteController implements IController<UtenteDTO, Integer> {
     }
 
     @Override
-    public ResponseEntity<?> getById(@PathVariable("Id") Integer id)
+    public ResponseEntity<?> getById(@PathVariable("id") Integer id)
     {
         return ResponseEntity.ok(utenteService.getUtente(id));
     }
+
+    //TODO: aggiungi cambira ruolo utente
 
 }

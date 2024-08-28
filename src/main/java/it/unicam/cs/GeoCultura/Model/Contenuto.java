@@ -27,6 +27,10 @@ public abstract class Contenuto {
         this.creatore.setID(IdCreatore);
     }
 
+    public Contenuto(){
+
+    }
+
     public Utente getCreatore() {
         return creatore;
     }

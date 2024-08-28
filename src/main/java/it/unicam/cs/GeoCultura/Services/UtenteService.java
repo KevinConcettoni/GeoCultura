@@ -44,14 +44,15 @@ public class UtenteService implements IUtenteService{
                 .collect(Collectors.toList());
     }
     @Override
-    public Utente getUtente(int id) {
+    public Utente getUtente(Integer id) {
         return utenteRepository.findById(id).orElse(null);
     }
 
     @Override
     public void eliminaUtente(Integer id) {
-        if(utenteRepository.existsById(id))
-            utenteRepository.delete((utenteRepository.findById(id).get()));
-        else throw new IllegalArgumentException("L'utente non esiste");
+        if(!utenteRepository.existsById(id))
+            throw new IllegalArgumentException("L'utente non esiste");
+        utenteRepository.delete((utenteRepository.findById(id).get()));
+
     }
 }

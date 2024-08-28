@@ -87,12 +87,19 @@ public class ContestService implements IContestService{
     }
 
     @Override
-    public void iscrizioneContenuto(Integer contentID, Integer contestID) {
+    public void iscrizioneContenuto(Integer idContenuto, Integer idContest) {
+        Contest contest = contestRepository.findById(idContest)
+                .orElseThrow(() -> new IllegalArgumentException("Errore: il contest non esiste"));
 
+        Contenuto content = contenutoRepository.findById(idContenuto)
+                .orElseThrow(() -> new IllegalArgumentException("Errore: il contenuto non esiste"));
+
+        contest.iscrizione(content);
+        contestRepository.save(contest);
     }
 
     @Override
-    public void chiusuraContest(Integer contestID, Integer contenutoVincitoreID) {
+    public void chiusuraContest(Integer idContest, Integer IdContenutoVincitore) {
 
     }
 }

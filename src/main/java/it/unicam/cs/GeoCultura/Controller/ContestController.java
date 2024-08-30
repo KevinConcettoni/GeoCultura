@@ -45,7 +45,7 @@ public class ContestController implements IController<ContestDTO, Integer> {
     }
     @Override
     public ResponseEntity<?> elimina(Integer integer) {
-        return null;//TODO Da Implementare
+        return ResponseEntity.badRequest().body("Non Implementato");
     }
     @PutMapping("/iscrizione/{idContest}")
     public ResponseEntity<?> iscrizioneContest(@RequestBody Integer idContenuto,

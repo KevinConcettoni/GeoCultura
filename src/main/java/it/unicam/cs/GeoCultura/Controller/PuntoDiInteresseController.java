@@ -37,6 +37,7 @@ public class PuntoDiInteresseController implements IController<PuntoDiInteresseD
 
     @Override
     public ResponseEntity<?> elimina(Integer aLong) {
-        return null;//TODO Da Implementare
+
+        return ResponseEntity.badRequest().body("Non Implementato");
     }
 }

@@ -41,6 +41,7 @@ public class ItinerarioController implements IController<ItinerarioDTO, Integer>
 
     @Override
     public ResponseEntity<?> elimina(Integer aLong) {
-        return null;//TODO Da Implementare
+
+        return ResponseEntity.badRequest().body("Non Implementato");
     }
 }

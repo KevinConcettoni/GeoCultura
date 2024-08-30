@@ -41,7 +41,6 @@ public class ContestController implements IController<ContestDTO, Integer> {
         cont.setID(id);
 
         this.contestService.modificaContest(cont, contestDTO.getContenuti());
-
         return ResponseEntity.ok("{}");
     }
     @Override

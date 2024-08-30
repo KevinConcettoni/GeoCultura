@@ -27,16 +27,19 @@ public class ComuneController implements  IController<ComuneDTO, Integer>{
 
     @Override
     public ResponseEntity<?> getAll() {
-        return null;//TODO Da Implementare
+
+        return ResponseEntity.ok(comuneService.getAll());
     }
 
     @Override
-    public ResponseEntity<?> modifica(ComuneDTO entity, Integer id) {
-        return null;//TODO Da Implementare
+    public ResponseEntity<?> modifica(ComuneDTO comune, Integer id) {
+
+        return ResponseEntity.ok(comuneService.modificaComune(comune.toComune(),id));
     }
 
     @Override
-    public ResponseEntity<?> elimina(Integer id) {
-        return null;//TODO Da Implementare
+    public ResponseEntity<?> elimina(@PathVariable("id")Integer id) {
+        comuneService.elimina(id);
+        return ResponseEntity.ok("{}");
     }
 }

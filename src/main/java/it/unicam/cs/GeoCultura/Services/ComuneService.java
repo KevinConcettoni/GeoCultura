@@ -10,9 +10,10 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class ComuneService implements IComuneService {
-
+    private  final ContenutoService contenutoService;
     private final ComuneRepository comuneRepository;
-    public ComuneService(ComuneRepository comuneRepository) {
+    public ComuneService(ContenutoService contenutoService, ComuneRepository comuneRepository) {
+        this.contenutoService = contenutoService;
         this.comuneRepository = comuneRepository;
     }
 
@@ -34,11 +35,22 @@ public class ComuneService implements IComuneService {
 
     @Override
     public Comune modificaComune(Comune comune, Integer id) {
-        return null; // TODO: implementare
+
+        comuneRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Errore: comune non trovato"));
+        comune.setID(id);
+        comuneRepository.save(comune);
+
+        return comune;
     }
 
     @Override
     public void elimina(Integer id) {
-        // TODO: implementare
+        comuneRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Errore: comune non trovato"));
+
+        contenutoService.eliminaContenutiComune(id);
+        comuneRepository.deleteById(id);
     }
+
 }

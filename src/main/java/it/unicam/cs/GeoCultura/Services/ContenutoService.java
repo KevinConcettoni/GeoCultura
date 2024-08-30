@@ -4,6 +4,7 @@ import it.unicam.cs.GeoCultura.Model.*;
 import it.unicam.cs.GeoCultura.Repositories.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -191,5 +192,23 @@ public class ContenutoService implements IContenutoService{
                 .orElseThrow(() -> new IllegalArgumentException("Errore: l'utente non ha un ruole in questo comune"));
 
         return ruolo == RuoloUtente.CURATORE;
+    }
+
+    public void eliminaContenutiComune(Integer idComune) {
+        List<Integer> lista = new ArrayList<>();
+
+        contenutoRepository.findAll().forEach(c -> {
+            if (c.getComune().getID().equals(idComune)) {
+                lista.add(c.getID());
+            }
+        });
+        lista.forEach(contenutoRepository::deleteById);
+        lista.clear();
+        ruoliComuneRepository.findAll().forEach(rcr -> {
+            if (rcr.getComune().getID().equals(idComune)) {
+                lista.add(rcr.getID());
+            }
+        });
+        lista.forEach(ruoliComuneRepository::deleteById);
     }
 }

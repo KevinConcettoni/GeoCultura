@@ -34,6 +34,11 @@ public class RuoloUtenteComune {
     public Comune getComune() {
         return comune;
     }
+
+    public Integer getID() {
+        return ID;
+    }
+
     public Utente getUtente() {
         return utente;
     }

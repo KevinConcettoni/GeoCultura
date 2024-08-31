@@ -31,4 +31,12 @@ public class PuntoDiInteresseDTO extends ContenutoDTO{
                 this.getComune()
         );
     }
+
+    public CategoriaPOI getCategoria() {
+        return categoria;
+    }
+
+    public Posizione getPosizione() {
+        return posizione;
+    }
 }

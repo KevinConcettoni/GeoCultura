@@ -16,9 +16,6 @@ public class ItinerarioDTO extends ContenutoDTO{
         this.contenuti = contenuti;
     }
 
-    public List<Integer> getContenuti() {
-        return contenuti;
-    }
     public Itinerario toItinerario(){
         return new Itinerario(this.getNome(),
                 this.getDescrizione(),
@@ -27,5 +24,12 @@ public class ItinerarioDTO extends ContenutoDTO{
                 this.livelloDifficolta,
                 this.getComune(),
                 this.contenuti);
+    }
+
+    public int getLivelloDifficolta() {
+        return livelloDifficolta;
+    }
+    public List<Integer> getContenuti() {
+        return contenuti;
     }
 }

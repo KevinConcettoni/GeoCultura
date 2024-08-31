@@ -36,6 +36,38 @@ public class ContestDTO {
                 this.regole, this.idComune, this.idCreatore);
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public Date getDataInizio() {
+        return dataInizio;
+    }
+
+    public Date getDataFine() {
+        return dataFine;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public String getRegole() {
+        return regole;
+    }
+
+    public Integer getIdCreatore() {
+        return idCreatore;
+    }
+
+    public Integer getIdComune() {
+        return idComune;
+    }
+
     public List<Integer> getContenuti() {
         return contenuti;
     }

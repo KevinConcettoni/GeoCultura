@@ -27,7 +27,9 @@ public class RuoloUtenteComune {
         this.ruolo = ruolo;
         this.utente = utente;
     }
+    public RuoloUtenteComune(){
 
+    }
     public RuoloUtente getRuolo() {
         return ruolo;
     }

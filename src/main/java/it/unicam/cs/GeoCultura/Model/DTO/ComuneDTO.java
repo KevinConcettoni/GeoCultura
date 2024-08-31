@@ -23,4 +23,25 @@ public class ComuneDTO {
     public ComuneDTO(){
 
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    @Nullable
+    public Posizione getPosizione() {
+        return posizione;
+    }
+
+    public double getArea() {
+        return area;
+    }
+
+    public Date getDataFondazione() {
+        return dataFondazione;
+    }
 }

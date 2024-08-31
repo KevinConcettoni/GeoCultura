@@ -29,6 +29,23 @@ public class UtenteDTO {
     public UtenteDTO(){
 
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Date getDataRegistrazione() {
+        return dataRegistrazione;
+    }
+
     public Integer getComune() {
         return comune;
     }

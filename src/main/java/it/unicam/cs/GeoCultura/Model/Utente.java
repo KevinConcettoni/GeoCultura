@@ -24,7 +24,7 @@ public class Utente {
         this.nomeCompleto = nomeCompleto;
         this.email = email;
         this.dataRegistrazione = dataRegistrazione;
-        this.nomeCompleto = null;
+        this.notifiche = null;
     }
 
     public Utente(){

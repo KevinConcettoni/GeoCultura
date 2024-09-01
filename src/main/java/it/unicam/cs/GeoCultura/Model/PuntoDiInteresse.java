@@ -18,6 +18,11 @@ public class PuntoDiInteresse extends Contenuto {
         this.comune =new Comune();
         this.comune.setID(comune);
     }
+
+    public PuntoDiInteresse() {
+
+    }
+
     public TipoContenuto getTipoContenuto(){
         return TipoContenuto.PUNTO_DI_INTERESSE;
     }

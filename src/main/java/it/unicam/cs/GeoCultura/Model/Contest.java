@@ -43,6 +43,9 @@ public class Contest{
         this.aperto = true;
     }
 
+    public Contest() {
+    }
+
     public Utente getCreatore() {
         return creatore;
     }

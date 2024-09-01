@@ -25,6 +25,10 @@ public class Itinerario extends Contenuto {
         return TipoContenuto.ITINERARIO;
     }
 
+    public Itinerario() {
+
+    }
+
     public List<Contenuto> getContenuti() {
         return contenuti;
     }

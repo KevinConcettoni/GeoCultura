@@ -14,6 +14,9 @@ public class Notifica {
     private String descrizione;
     private LocalDateTime timeStamp;
 
+    public Notifica() {
+    }
+
     public Notifica(String titolo, String descrizione)
     {
         if (titolo.isBlank() || descrizione.isBlank())

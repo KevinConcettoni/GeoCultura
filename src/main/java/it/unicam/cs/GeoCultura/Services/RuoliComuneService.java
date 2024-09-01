@@ -26,9 +26,9 @@ public class RuoliComuneService implements IRuoliComuneService{
     }
     @Override
     public RuoloUtente getRuolo(Integer idUtente, Integer idComune) {
-        List<RuoloUtenteComune> roles = ruoliComuneRepository.cercaRuoliPerId(idUtente);
+        List<RuoloUtenteComune> ruoli = ruoliComuneRepository.cercaRuoliPerId(idUtente);
 
-        for (RuoloUtenteComune i : roles) {
+        for (RuoloUtenteComune i : ruoli) {
             if (i.getComune().getID().equals(idComune)) {
                 comuneService.getById(idComune);
 
@@ -36,13 +36,13 @@ public class RuoliComuneService implements IRuoliComuneService{
             }
         }
 
-        throw new IllegalArgumentException("L'utente non ha un ruolo in questo comune");
+        throw new IllegalArgumentException("Metodo rotto");
     }
     @Override
     public void setRuolo(Integer idUtente, Integer idComune, RuoloUtente ruoloUtente) {
-        List<RuoloUtenteComune> roles = ruoliComuneRepository.cercaRuoliPerId(idUtente);
+        List<RuoloUtenteComune> ruoli = ruoliComuneRepository.cercaRuoliPerId(idUtente);
 
-        for (RuoloUtenteComune i : roles) {
+        for (RuoloUtenteComune i : ruoli) {
             if (i.getComune().getID().equals(idComune)) {
                 comuneService.getById(idComune);
                 i.setRuolo(ruoloUtente);

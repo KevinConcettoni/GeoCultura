@@ -36,6 +36,10 @@ public class ContestDTO {
                 this.regole, this.idComune, this.idCreatore);
     }
 
+    public ContestDTO(){
+
+    }
+
     public String getNome() {
         return nome;
     }

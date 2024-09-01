@@ -39,7 +39,7 @@ public class Contest{
         this.comune = new Comune();
         this.comune.setID(comune);
         this.creatore = new Utente();
-        this.creatore.setID(comune);
+        this.creatore.setID(creatore);
         this.aperto = true;
     }
 

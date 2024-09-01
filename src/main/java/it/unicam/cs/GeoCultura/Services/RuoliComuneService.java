@@ -36,7 +36,7 @@ public class RuoliComuneService implements IRuoliComuneService{
             }
         }
 
-        throw new IllegalArgumentException("Metodo rotto");
+        throw new IllegalArgumentException("L'utente non ha i permessi in questo comune");
     }
     @Override
     public void setRuolo(Integer idUtente, Integer idComune, RuoloUtente ruoloUtente) {

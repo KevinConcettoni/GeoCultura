@@ -53,4 +53,11 @@ public class ContestController implements IController<ContestDTO, Integer> {
         contestService.iscrizioneContenuto(idContenuto, idContest);
         return ResponseEntity.ok("");
     }
+
+    @PutMapping("/chiusura/{contestId}")
+    public ResponseEntity<?> chiusuraContest(@PathVariable Integer contestId, @RequestBody Integer idContenutoVincitore) {
+        contestService.chiusuraContest(contestId, idContenutoVincitore);
+
+        return ResponseEntity.ok("{}");
+    }
 }

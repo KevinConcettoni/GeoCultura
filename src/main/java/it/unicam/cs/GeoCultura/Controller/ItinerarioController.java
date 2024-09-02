@@ -4,6 +4,7 @@ import it.unicam.cs.GeoCultura.Model.DTO.ItinerarioDTO;
 import it.unicam.cs.GeoCultura.Model.Itinerario;
 import it.unicam.cs.GeoCultura.Services.ContenutoService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class ItinerarioController implements IController<ItinerarioDTO, Integer>
 
     @Override
     public ResponseEntity<Itinerario> getById(Integer id) {
-        return ResponseEntity.ok(contenutoService.getItinerario(Math.toIntExact(id))); //Da rivedere
+        return ResponseEntity.ok(contenutoService.getItinerario(Math.toIntExact(id)));
     }
 
     @Override
@@ -40,8 +41,7 @@ public class ItinerarioController implements IController<ItinerarioDTO, Integer>
     }
 
     @Override
-    public ResponseEntity<?> elimina(Integer aLong) {
-
+    public ResponseEntity<?> elimina(@PathVariable("id") Integer id) {
         return ResponseEntity.badRequest().body("Non Implementato");
     }
 }

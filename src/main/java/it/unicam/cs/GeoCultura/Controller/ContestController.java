@@ -44,19 +44,19 @@ public class ContestController implements IController<ContestDTO, Integer> {
         return ResponseEntity.ok("{}");
     }
     @Override
-    public ResponseEntity<?> elimina(Integer integer) {
+    public ResponseEntity<?> elimina(@PathVariable("id") Integer id) {
         return ResponseEntity.badRequest().body("Non Implementato");
     }
     @PutMapping("/iscrizione/{idContest}")
-    public ResponseEntity<?> iscrizioneContest(@RequestBody Integer idContenuto,
-                                               @PathVariable Integer idContest){
+    public ResponseEntity<?> iscrizioneContest(@PathVariable Integer idContenuto,
+                                               @RequestBody Integer idContest){
         contestService.iscrizioneContenuto(idContenuto, idContest);
         return ResponseEntity.ok("");
     }
 
-    @PutMapping("/chiusura/{contestId}")
-    public ResponseEntity<?> chiusuraContest(@PathVariable Integer contestId, @RequestBody Integer idContenutoVincitore) {
-        contestService.chiusuraContest(contestId, idContenutoVincitore);
+    @PutMapping("/chiusura/{idContest}")
+    public ResponseEntity<?> chiusuraContest(@PathVariable Integer idContest, @RequestBody Integer idContenutoVincitore) {
+        contestService.chiusuraContest(idContest, idContenutoVincitore);
 
         return ResponseEntity.ok("{}");
     }

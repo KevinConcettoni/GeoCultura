@@ -38,7 +38,7 @@ public class ComuneController implements  IController<ComuneDTO, Integer>{
     }
 
     @Override
-    public ResponseEntity<?> elimina(@PathVariable("id")Integer id) {
+    public ResponseEntity<?> elimina(@PathVariable("id") Integer id) {
         comuneService.elimina(id);
         return ResponseEntity.ok("{}");
     }

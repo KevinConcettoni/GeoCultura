@@ -38,9 +38,8 @@ public class UtenteController implements IController<UtenteDTO, Integer> {
     }
 
     @Override
-    public ResponseEntity<?> elimina(Integer idUtente) {
-        utenteService.eliminaUtente(idUtente);
-        return ResponseEntity.ok("Utente eliminato correttamente");
+    public ResponseEntity<?> elimina(@PathVariable("id") Integer id) {
+        return ResponseEntity.badRequest().body("Non implementato");
     }
 
     @Override
@@ -49,7 +48,7 @@ public class UtenteController implements IController<UtenteDTO, Integer> {
         return ResponseEntity.ok(utenteService.getUtente(id));
     }
 
-    @PutMapping("/ruolo/")
+    @PutMapping("/ruolo")
     public ResponseEntity<?> cambiaRuolo(@RequestBody CambioRuoloDTO dto) {
         try {
             if (ruoliComuneService.getRuolo(dto.getIdUtente(), dto.getComuneId()) == dto.getNuovoRuolo()) {

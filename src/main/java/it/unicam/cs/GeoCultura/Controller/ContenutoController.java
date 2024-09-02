@@ -17,30 +17,30 @@ public class ContenutoController {
         this.contenutoService = contenutoService;
     }
 
-    @PutMapping("/approva/evento/{id}")
-    public ResponseEntity<?> approvaEvento(@PathVariable Integer id, @RequestBody Integer utenterId)
+    @PutMapping("/approva/evento/{idEvento}")
+    public ResponseEntity<?> approvaEvento(@PathVariable Integer idEvento, @RequestBody Integer utenterId)
     {
-        if (contenutoService.verificaRuoliApprovazione(id, utenterId))
+        if (contenutoService.verificaRuoliApprovazione(idEvento, utenterId))
             return ResponseEntity.badRequest().body("Non hai i permessi per approvare il contenuto");
 
-        contenutoService.approvaEvento(id);
-        return ResponseEntity.ok().body("");
+        contenutoService.approvaEvento(idEvento);
+        return ResponseEntity.ok().body("Evento approvato con successo");
     }
-    @PutMapping("/approva/poi/{id}")
-    public ResponseEntity<?> approvaPuntoDiInteresse(@PathVariable Integer id, @RequestBody Integer idUtente){
-        if (contenutoService.verificaRuoliApprovazione(id, idUtente))
+    @PutMapping("/approva/poi/{idPoi}")
+    public ResponseEntity<?> approvaPuntoDiInteresse(@PathVariable Integer idPoi, @RequestBody Integer idUtente){
+        if (contenutoService.verificaRuoliApprovazione(idPoi, idUtente))
             return ResponseEntity.badRequest().body("Non hai i permessi per approvare il contenuto");
-        contenutoService.approvaPuntoDiInteresse(id);
-        return ResponseEntity.ok().body("");
+        contenutoService.approvaPuntoDiInteresse(idPoi);
+        return ResponseEntity.ok().body("Punto di interesse approvato con successo");
     }
 
-    @PutMapping("/approva/itinerario/{id}")
-    public ResponseEntity<?> approvaItinerario(@PathVariable Integer id, @RequestBody Integer idUtente)
+    @PutMapping("/approva/itinerario/{idItinerario}")
+    public ResponseEntity<?> approvaItinerario(@PathVariable Integer idItinerario, @RequestBody Integer idUtente)
     {
-        if (contenutoService.verificaRuoliApprovazione(id, idUtente))
+        if (contenutoService.verificaRuoliApprovazione(idItinerario, idUtente))
             return ResponseEntity.badRequest().body("Non hai i permessi per approvare il contenuto");
-        contenutoService.approvaItinerario(id);
-        return ResponseEntity.ok().body("");
+        contenutoService.approvaItinerario(idItinerario);
+        return ResponseEntity.ok().body("itinerario approvato con successo");
     }
 }
 

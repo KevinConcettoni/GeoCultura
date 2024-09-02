@@ -4,9 +4,15 @@ import it.unicam.cs.GeoCultura.Model.DTO.PuntoDiInteresseDTO;
 import it.unicam.cs.GeoCultura.Model.PuntoDiInteresse;
 import it.unicam.cs.GeoCultura.Services.ContenutoService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
+@RestController
+@RequestMapping("/poi")
 public class PuntoDiInteresseController implements IController<PuntoDiInteresseDTO, Integer>{
     private final ContenutoService contenutoService;
 
@@ -36,7 +42,7 @@ public class PuntoDiInteresseController implements IController<PuntoDiInteresseD
     }
 
     @Override
-    public ResponseEntity<?> elimina(Integer aLong) {
+    public ResponseEntity<?> elimina(@PathVariable("id") Integer id) {
 
         return ResponseEntity.badRequest().body("Non Implementato");
     }

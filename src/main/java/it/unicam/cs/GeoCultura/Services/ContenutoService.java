@@ -102,6 +102,19 @@ public class ContenutoService implements IContenutoService{
 
     @Override
     public Evento creaNuovoEvento(Evento evento) {
+        if (evento == null)
+            throw new IllegalArgumentException("L'evento è nullo");
+
+        evento.setComune(comuneRepository.findById(evento.getComune().getID())
+                .orElseThrow(() -> new IllegalArgumentException("Errore: il comune non esiste")));
+
+        evento.setCreatore(utenteRepository.findById(evento.getCreatore().getID())
+                .orElseThrow(() -> new IllegalArgumentException("Errore: il creatore non esiste")));
+
+        evento.setStatoApprovazione(approvazioneDefaultUtente(evento.getCreatore().getID(),
+                evento.getComune().getID())
+                .orElseThrow(() -> new IllegalArgumentException("Errore: l'utente non può approvare il contenuto")));
+
         return eventoRepository.save(evento);
     }
 

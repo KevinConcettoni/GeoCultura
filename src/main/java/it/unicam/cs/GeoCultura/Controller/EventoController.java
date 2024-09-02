@@ -41,8 +41,7 @@ public class EventoController implements IController<EventoDTO, Integer> {
     }
 
     @Override
-    public ResponseEntity<?> elimina(Integer id) {
-
+    public ResponseEntity<?> elimina(@PathVariable("id") Integer id) {
         return ResponseEntity.badRequest().body("Non Implementato");
     }
 }

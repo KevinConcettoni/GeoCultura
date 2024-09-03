@@ -3,6 +3,7 @@ package it.unicam.cs.GeoCultura.Controller;
 import it.unicam.cs.GeoCultura.Model.DTO.EventoDTO;
 import it.unicam.cs.GeoCultura.Model.Evento;
 import it.unicam.cs.GeoCultura.Services.ContenutoService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class EventoController implements IController<EventoDTO, Integer> {
         this.contenutoService = contenutoService;
     }
     @Override
-    public ResponseEntity<Evento> crea(EventoDTO evento) {
+    public ResponseEntity<Evento> crea(@Valid EventoDTO evento) {
         Evento nuovoEvento = contenutoService.creaNuovoEvento(evento.toEvento());
         return ResponseEntity.ok(nuovoEvento);
     }

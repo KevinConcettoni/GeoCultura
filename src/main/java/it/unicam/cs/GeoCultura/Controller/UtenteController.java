@@ -5,6 +5,7 @@ import it.unicam.cs.GeoCultura.Model.DTO.UtenteDTO;
 import it.unicam.cs.GeoCultura.Model.Utente;
 import it.unicam.cs.GeoCultura.Services.RuoliComuneService;
 import it.unicam.cs.GeoCultura.Services.UtenteService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
@@ -21,7 +22,7 @@ public class UtenteController implements IController<UtenteDTO, Integer> {
     }
 
     @Override
-    public ResponseEntity<?> crea(UtenteDTO utente)
+    public ResponseEntity<?> crea(@Valid UtenteDTO utente)
     {
         Utente nuovoUtente= utenteService.creaUtente(utente.toUtente(), utente.getComune(), utente.getRuolo());
         return ResponseEntity.ok(nuovoUtente);
@@ -49,7 +50,7 @@ public class UtenteController implements IController<UtenteDTO, Integer> {
     }
 
     @PutMapping("/ruolo")
-    public ResponseEntity<?> cambiaRuolo(@RequestBody CambioRuoloDTO dto) {
+    public ResponseEntity<?> cambiaRuolo(@Valid @RequestBody CambioRuoloDTO dto) {
         try {
             if (ruoliComuneService.getRuolo(dto.getIdUtente(), dto.getComuneId()) == dto.getNuovoRuolo()) {
                 return ResponseEntity.badRequest().body("L'utente ha già quel ruolo");

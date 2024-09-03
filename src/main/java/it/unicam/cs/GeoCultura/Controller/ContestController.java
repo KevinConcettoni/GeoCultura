@@ -4,6 +4,7 @@ import it.unicam.cs.GeoCultura.Model.Contest;
 import it.unicam.cs.GeoCultura.Model.DTO.ContestDTO;
 import it.unicam.cs.GeoCultura.Model.Utente;
 import it.unicam.cs.GeoCultura.Services.ContestService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class ContestController implements IController<ContestDTO, Integer> {
     }
 
     @Override
-    public ResponseEntity<Contest> crea (ContestDTO contest)
+    public ResponseEntity<Contest> crea (@Valid ContestDTO contest)
     {
         Contest newContest = contestService.creaContest(contest.toContest(), contest.getContenuti());
         return ResponseEntity.ok(newContest);
@@ -36,7 +37,7 @@ public class ContestController implements IController<ContestDTO, Integer> {
     }
 
     @Override
-    public ResponseEntity<?> modifica(ContestDTO contestDTO, Integer id) {
+    public ResponseEntity<?> modifica(@Valid ContestDTO contestDTO, Integer id) {
         Contest cont = contestDTO.toContest();
         cont.setID(id);
 

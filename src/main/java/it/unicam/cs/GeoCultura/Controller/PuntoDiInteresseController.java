@@ -3,6 +3,7 @@ package it.unicam.cs.GeoCultura.Controller;
 import it.unicam.cs.GeoCultura.Model.DTO.PuntoDiInteresseDTO;
 import it.unicam.cs.GeoCultura.Model.PuntoDiInteresse;
 import it.unicam.cs.GeoCultura.Services.ContenutoService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,7 +21,7 @@ public class PuntoDiInteresseController implements IController<PuntoDiInteresseD
         this.contenutoService = contenutoService;
     }
     @Override
-    public ResponseEntity<PuntoDiInteresse> crea(PuntoDiInteresseDTO puntoDiInteresse) {
+    public ResponseEntity<PuntoDiInteresse> crea(@Valid PuntoDiInteresseDTO puntoDiInteresse) {
         PuntoDiInteresse nuovoPuntoDiInteresse = contenutoService.creaNuovoPuntoDiInteresse(
                 puntoDiInteresse.toPuntoDiInteresse());
         return ResponseEntity.ok(nuovoPuntoDiInteresse);

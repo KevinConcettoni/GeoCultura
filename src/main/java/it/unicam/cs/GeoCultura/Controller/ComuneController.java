@@ -4,6 +4,7 @@ import it.unicam.cs.GeoCultura.Model.Comune;
 import it.unicam.cs.GeoCultura.Model.DTO.ComuneDTO;
 import it.unicam.cs.GeoCultura.Model.Utente;
 import it.unicam.cs.GeoCultura.Services.ComuneService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class ComuneController implements  IController<ComuneDTO, Integer>{
         this.comuneService = comuneService;
     }
     @Override
-    public ResponseEntity<?> crea(@RequestBody ComuneDTO comune) {
+    public ResponseEntity<?> crea(@Valid @RequestBody ComuneDTO comune) {
         Comune nuovoComune= comuneService.creaComune(comune.toComune());
         return ResponseEntity.ok(nuovoComune);
     }
@@ -40,6 +41,6 @@ public class ComuneController implements  IController<ComuneDTO, Integer>{
     @Override
     public ResponseEntity<?> elimina(@PathVariable("id") Integer id) {
         comuneService.elimina(id);
-        return ResponseEntity.ok("{}");
+        return ResponseEntity.ok("Comune eliminato correttamente");
     }
 }

@@ -1,11 +1,13 @@
 package it.unicam.cs.GeoCultura.Model.DTO;
 
 import it.unicam.cs.GeoCultura.Model.Itinerario;
+import jakarta.validation.constraints.Size;
 
 import java.util.Date;
 import java.util.List;
 
 public class ItinerarioDTO extends ContenutoDTO{
+    @Size(min = 1, max = 5, message = "Il livello di difficoltà deve essere compreso tra 1 e 5")
     private int livelloDifficolta;
     private List<Integer> contenuti;
 

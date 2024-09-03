@@ -3,6 +3,7 @@ package it.unicam.cs.GeoCultura.Controller;
 import it.unicam.cs.GeoCultura.Model.DTO.ItinerarioDTO;
 import it.unicam.cs.GeoCultura.Model.Itinerario;
 import it.unicam.cs.GeoCultura.Services.ContenutoService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class ItinerarioController implements IController<ItinerarioDTO, Integer>
         this.contenutoService = contenutoService;
     }
     @Override
-    public ResponseEntity<Itinerario> crea(ItinerarioDTO itinerario) {
+    public ResponseEntity<Itinerario> crea(@Valid ItinerarioDTO itinerario) {
         Itinerario nuovoItinerario = contenutoService.creaNuovoItinerario(itinerario.toItinerario(), itinerario.getContenuti());
         return ResponseEntity.ok(nuovoItinerario);
     }

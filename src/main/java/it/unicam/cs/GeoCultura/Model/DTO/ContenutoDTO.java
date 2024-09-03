@@ -3,15 +3,21 @@ package it.unicam.cs.GeoCultura.Model.DTO;
 import it.unicam.cs.GeoCultura.Model.Comune;
 import it.unicam.cs.GeoCultura.Model.StatoApprovazione;
 import it.unicam.cs.GeoCultura.Model.Utente;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 
 import java.util.Date;
 
 public class ContenutoDTO {
+    @NotNull(message = "Il campo Nome non può essere nullo")
+    @NotEmpty(message = "Il campo Nome non può essere vuoto")
     private String nome;
     private String descrizione;
     private Date dataCreazione;
+    @NotNull(message = "Il campo Creatore non può essere nullo")
     private Integer creatore;
+    @NotNull(message = "Il campo Comune non può essere nullo")
     private Integer comune;
 
     public ContenutoDTO(String nome, String descrizione, Date dataCreazione, Integer creatore, Integer comune) {

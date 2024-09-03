@@ -3,11 +3,15 @@ package it.unicam.cs.GeoCultura.Model.DTO;
 import it.unicam.cs.GeoCultura.Model.Contenuto;
 import it.unicam.cs.GeoCultura.Model.Contest;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 import java.util.List;
 
 public class ContestDTO {
+    @NotNull(message = "Il campo Nome non può essere nullo")
+    @NotEmpty(message = "Il campo Nome non può essere vuoto")
     private String nome;
     private String descrizione;
     private Date dataInizio;
@@ -15,7 +19,9 @@ public class ContestDTO {
     private String tipo;
     private String regole;
     private List<Integer> contenuti;
+    @NotNull(message = "Il campo Creatore non può essere nullo")
     private Integer idCreatore;
+    @NotNull(message = "Il campo Creatore non può essere nullo")
     private Integer idComune;
 
     public ContestDTO(String nome, String descrizione, Date dataInizio, Date dataFine, String tipo,

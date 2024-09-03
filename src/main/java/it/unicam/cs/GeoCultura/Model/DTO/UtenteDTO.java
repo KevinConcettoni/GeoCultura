@@ -1,16 +1,27 @@
 package it.unicam.cs.GeoCultura.Model.DTO;
 
 import it.unicam.cs.GeoCultura.Model.Utente;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
 public class UtenteDTO {
-    // TODO: fixare posizione, la passa null
+    @NotNull(message = "Il campo Username non può essere nullo")
+    @NotEmpty(message = "Il campo Username non può essere vuoto")
     private String username;
     private String nomeCompleto;
+    @NotNull(message = "Il campo Email non può essere nullo")
+    @NotEmpty(message = "Il campo Email non può essere vuoto")
+    @Email(message = "Il campo Email deve essere valido")
     private String email;
     private Date dataRegistrazione;
+    @NotNull(message = "Il campo Comune non può essere nullo")
     private Integer comune;
+    @NotNull(message = "Il campo Ruolo non può essere nullo")
+    @Min(value = 0, message = "Il campo ruolo deve essere un numero positivo")
     private int ruolo;
 
     public UtenteDTO(String username, String nomeCompleto, String email, Date dataRegistrazione, Integer comune, int ruolo) {
